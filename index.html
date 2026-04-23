@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Starlight Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background: #fffdfa; font-family: 'Noto Sans JP', sans-serif; padding: 48px 32px; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: 32px; font-weight: 700; color: #1a1010; margin-bottom: 6px; }
+  .subtitle { font-size: 13px; color: #6a5860; margin-bottom: 40px; letter-spacing: 0.05em; }
+  .section-label { font-size: 10px; color: #6a5860; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; margin-top: 32px; }
+  .grid { display: flex; flex-wrap: wrap; gap: 12px; }
+  a.card {
+    display: block; text-decoration: none;
+    background: #f5f0ea; border: 1px solid rgba(212,160,48,0.25);
+    border-radius: 10px; padding: 16px 20px; flex: 1; min-width: 160px;
+    transition: all 0.2s;
+  }
+  a.card:hover { border-color: rgba(212,160,48,0.6); background: #ede5d8; transform: translateY(-2px); }
+  a.card .name { font-size: 14px; font-weight: 500; color: #1a1010; margin-bottom: 3px; }
+  a.card .desc { font-size: 11px; color: #6a5860; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #d4a030; margin-right: 8px; vertical-align: middle; }
+</style>
+</head>
+<body>
+<h1><span class="dot"></span>Starlight</h1>
+<p class="subtitle">Design System — カラー・タイポグラフィ・コンポーネント</p>
+
+<div class="section-label">Colors</div>
+<div class="grid">
+  <a class="card" href="preview/colors-primary.html">
+    <div class="name">Primary Colors</div>
+    <div class="desc">Gold · Rose · Coral</div>
+  </a>
+  <a class="card" href="preview/colors-surfaces.html">
+    <div class="name">Surface Colors</div>
+    <div class="desc">Backgrounds · Text · Borders</div>
+  </a>
+</div>
+
+<div class="section-label">Typography</div>
+<div class="grid">
+  <a class="card" href="preview/type-display.html">
+    <div class="name">Display Type</div>
+    <div class="desc">見出し · Shippori Mincho</div>
+  </a>
+  <a class="card" href="preview/type-body.html">
+    <div class="name">Body Type</div>
+    <div class="desc">本文 · Noto Sans JP · Playfair</div>
+  </a>
+</div>
+
+<div class="section-label">Components</div>
+<div class="grid">
+  <a class="card" href="preview/components-buttons.html">
+    <div class="name">Buttons</div>
+    <div class="desc">Primary · Secondary · Ghost</div>
+  </a>
+  <a class="card" href="preview/components-cards.html">
+    <div class="name">Cards</div>
+    <div class="desc">Cast card · Price card</div>
+  </a>
+  <a class="card" href="preview/components-nav.html">
+    <div class="name">Navigation</div>
+    <div class="desc">Glass nav · Gold underline</div>
+  </a>
+  <a class="card" href="preview/components-schedule.html">
+    <div class="name">Schedule</div>
+    <div class="desc">イベントタイムテーブル</div>
+  </a>
+</div>
+
+<div class="section-label">Tokens</div>
+<div class="grid">
+  <a class="card" href="preview/shadows-elevation.html">
+    <div class="name">Shadows</div>
+    <div class="desc">Elevation · Glow effects</div>
+  </a>
+  <a class="card" href="preview/spacing-tokens.html">
+    <div class="name">Spacing & Radius</div>
+    <div class="desc">スペーシング · 角丸</div>
+  </a>
+</div>
+</body>
+</html>
