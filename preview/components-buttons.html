@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background: #fffdfa; font-family: 'Noto Sans JP', sans-serif; padding: 28px; }
+  .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+  .label { font-size: 10px; color: #6a5860; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  button { font-family: 'Noto Sans JP', sans-serif; cursor: pointer; border: none; transition: all 0.2s; letter-spacing: 0.05em; }
+  .btn-primary { background: #d4a030; color: #120a1e; font-size: 14px; font-weight: 700; padding: 12px 28px; border-radius: 8px; }
+  .btn-primary:hover { background: #e0b84a; transform: translateY(-1px); }
+  .btn-secondary { background: transparent; color: #d4a030; font-size: 14px; font-weight: 500; padding: 11px 27px; border-radius: 8px; border: 1px solid #d4a030; }
+  .btn-rose { background: #e8698a; color: #fff; font-size: 14px; font-weight: 700; padding: 12px 28px; border-radius: 8px; }
+  .btn-ghost { background: transparent; color: #4a3848; font-size: 14px; padding: 11px 27px; border-radius: 8px; border: 1px solid rgba(212,160,48,0.40); }
+  .btn-sm { font-size: 12px; padding: 8px 18px; border-radius: 6px; background: rgba(212,160,48,0.15); color: #d4a030; border: 1px solid rgba(212,160,48,0.3); }
+  .btn-pill { background: #e8698a; color: #fff; font-size: 12px; font-weight: 500; padding: 7px 20px; border-radius: 999px; }
+  .btn-lg { background: #d4a030; color: #120a1e; font-size: 16px; font-weight: 700; padding: 16px 40px; border-radius: 8px; }
+</style>
+</head>
+<body>
+<div class="label">Primary Actions</div>
+<div class="row">
+  <button class="btn-lg">ご予約はこちら</button>
+  <button class="btn-primary">詳細を見る</button>
+  <button class="btn-rose">キャスト一覧</button>
+</div>
+<div class="label">Secondary / Ghost</div>
+<div class="row">
+  <button class="btn-secondary">料金表を見る</button>
+  <button class="btn-ghost">閉じる</button>
+  <button class="btn-sm">もっと見る</button>
+  <button class="btn-pill">人気No.1</button>
+</div>
+</body>
+</html>

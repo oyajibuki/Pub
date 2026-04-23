@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background: #fffdfa; font-family: 'Noto Sans JP', sans-serif; padding: 24px; }
+  .grid { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; }
+  .token { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .bar { background: linear-gradient(135deg, #d4a030, #e8698a); border-radius: 3px; width: 20px; }
+  .name { font-size: 10px; color: #6a5860; }
+  .val  { font-size: 10px; color: #d4a030; }
+  .section { margin-bottom: 20px; }
+  .label { font-size: 11px; color: #6a5860; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+  .radii { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
+  .radius-demo { width: 40px; height: 40px; background: #ede5d8; border: 1px solid rgba(212,160,48,0.3); display: flex; align-items: center; justify-content: center; font-size: 9px; color: #6a5860; }
+</style>
+</head>
+<body>
+<div class="section">
+  <div class="label">Spacing Scale</div>
+  <div class="grid">
+    <div class="token"><div class="bar" style="height:4px"></div><div class="name">sp-1</div><div class="val">4px</div></div>
+    <div class="token"><div class="bar" style="height:8px"></div><div class="name">sp-2</div><div class="val">8px</div></div>
+    <div class="token"><div class="bar" style="height:12px"></div><div class="name">sp-3</div><div class="val">12px</div></div>
+    <div class="token"><div class="bar" style="height:16px"></div><div class="name">sp-4</div><div class="val">16px</div></div>
+    <div class="token"><div class="bar" style="height:20px"></div><div class="name">sp-5</div><div class="val">20px</div></div>
+    <div class="token"><div class="bar" style="height:24px"></div><div class="name">sp-6</div><div class="val">24px</div></div>
+    <div class="token"><div class="bar" style="height:32px"></div><div class="name">sp-8</div><div class="val">32px</div></div>
+    <div class="token"><div class="bar" style="height:40px"></div><div class="name">sp-10</div><div class="val">40px</div></div>
+    <div class="token"><div class="bar" style="height:48px"></div><div class="name">sp-12</div><div class="val">48px</div></div>
+    <div class="token"><div class="bar" style="height:64px"></div><div class="name">sp-16</div><div class="val">64px</div></div>
+    <div class="token"><div class="bar" style="height:80px"></div><div class="name">sp-20</div><div class="val">80px</div></div>
+  </div>
+</div>
+<div class="section">
+  <div class="label">Border Radius</div>
+  <div class="radii">
+    <div class="token"><div class="radius-demo" style="border-radius:4px">sm</div><div class="val">4px</div></div>
+    <div class="token"><div class="radius-demo" style="border-radius:8px">md</div><div class="val">8px</div></div>
+    <div class="token"><div class="radius-demo" style="border-radius:12px">lg</div><div class="val">12px</div></div>
+    <div class="token"><div class="radius-demo" style="border-radius:20px">xl</div><div class="val">20px</div></div>
+    <div class="token"><div class="radius-demo" style="border-radius:9999px;width:60px">full</div><div class="val">full</div></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background: #fffdfa; font-family: 'Noto Sans JP', sans-serif; padding: 24px; }
+  .row { display: flex; gap: 10px; margin-bottom: 10px; }
+  .swatch { flex: 1; border-radius: 8px; height: 56px; display: flex; align-items: flex-end; padding: 7px 10px; border: 1px solid rgba(255,255,255,0.06); }
+  .swatch span { font-size: 11px; font-weight: 500; color: #4a3848; }
+  .label { font-size: 11px; color: #6a5860; margin-bottom: 6px; letter-spacing: 0.1em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<p class="label">Backgrounds</p>
+<div class="row">
+  <div class="swatch" style="background:#f0ebe0"><span>Base #f0ebe0</span></div>
+  <div class="swatch" style="background:#fffdfa"><span>BG #fffdfa</span></div>
+  <div class="swatch" style="background:#f5f0ea"><span>Surface #f5f0ea</span></div>
+  <div class="swatch" style="background:#ede5d8"><span>Raised #ede5d8</span></div>
+  <div class="swatch" style="background:#e0d8ca"><span>Overlay #e0d8ca</span></div>
+</div>
+<p class="label">Text</p>
+<div class="row">
+  <div class="swatch" style="background:#1e1230">#1a1010">Primary #f5ede0</span></div>
+  <div class="swatch" style="background:#1e1230">#4a3848">Secondary #c8b4c0</span></div>
+  <div class="swatch" style="background:#1e1230">#6a5860">Muted #8a7490</span></div>
+  <div class="swatch" style="background:#1e1230"><span style="color:#d4a030">Gold #d4a030</span></div>
+  <div class="swatch" style="background:#1e1230"><span style="color:#e8698a">Rose #e8698a</span></div>
+</div>
+<p class="label">Borders</p>
+<div class="row">
+  <div class="swatch" style="background:#1e1230; border:1px solid rgba(212,160,48,0.12)"><span>Subtle</span></div>
+  <div class="swatch" style="background:#1e1230; border:1px solid rgba(212,160,48,0.30)"><span>Default</span></div>
+  <div class="swatch" style="background:#1e1230; border:1px solid rgba(212,160,48,0.60)"><span>Strong</span></div>
+</div>
+</body>
+</html>

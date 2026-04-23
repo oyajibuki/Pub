@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background: #fffdfa; font-family: 'Noto Sans JP', sans-serif; padding: 24px; }
+  .table { width: 100%; border-collapse: collapse; }
+  .table th { font-size: 11px; color: #d4a030; letter-spacing: 0.12em; text-align: left; padding: 8px 12px; border-bottom: 1px solid rgba(212,160,48,0.3); text-transform: uppercase; }
+  .table td { font-size: 13px; color: #4a3848; padding: 10px 12px; border-bottom: 1px solid rgba(212,160,48,0.1); vertical-align: middle; }
+  .table tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 999px; font-weight: 500; }
+  .badge-dance { background: rgba(232,105,138,0.15); color: #e8698a; border: 1px solid rgba(232,105,138,0.3); }
+  .badge-free { background: rgba(212,160,48,0.12); color: #d4a030; border: 1px solid rgba(212,160,48,0.25); }
+  .time { font-family: 'Shippori Mincho', serif; font-size: 15px; color: #1a1010; }
+</style>
+</head>
+<body>
+<table class="table">
+  <thead>
+    <tr>
+      <th>時間</th>
+      <th>イベント</th>
+      <th>出演</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="time">20:00〜20:30</span></td>
+      <td>オープニング <span class="badge badge-dance">ダンス</span></td>
+      <td>全キャスト</td>
+    </tr>
+    <tr>
+      <td><span class="time">21:00〜21:20</span></td>
+      <td>フリータイム <span class="badge badge-free">フリー</span></td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td><span class="time">22:00〜22:30</span></td>
+      <td>ダンスショー <span class="badge badge-dance">ダンス</span></td>
+      <td>マリア / アンジェラ</td>
+    </tr>
+    <tr>
+      <td><span class="time">23:30〜翌0:00</span></td>
+      <td>クロージング <span class="badge badge-dance">ダンス</span></td>
+      <td>全キャスト</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

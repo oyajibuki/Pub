@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Club Starlight — フィリピンパブ</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #08101e;
+    color: #f5ede0;
+    font-family: 'Noto Sans JP', sans-serif;
+    min-height: 100vh;
+  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #120a1e; }
+  ::-webkit-scrollbar-thumb { background: rgba(212,160,48,0.3); border-radius: 3px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="Components.jsx"></script>
+<script type="text/babel" src="HomePage.jsx"></script>
+<script type="text/babel" src="CastPage.jsx"></script>
+<script type="text/babel" src="PricingPage.jsx"></script>
+<script type="text/babel" src="DancePage.jsx"></script>
+<script type="text/babel" src="AccessPage.jsx"></script>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+const PAGES = {
+  home:    () => <HomePage    onNav={setPage} />,
+  cast:    () => <CastPage    />,
+  pricing: () => <PricingPage />,
+  dance:   () => <DancePage   />,
+  access:  () => <AccessPage  />,
+};
+
+let setPage;
+
+function App() {
+  const [page, _setPage] = useState(() => {
+    return localStorage.getItem('clubrosa_page') || 'home';
+  });
+  setPage = (p) => {
+    _setPage(p);
+    localStorage.setItem('clubrosa_page', p);
+    window.scrollTo({ top: 0 });
+  };
+
+  const PageComponent = PAGES[page] || PAGES.home;
+
+  return (
+    <div>
+      <Nav page={page} onNav={setPage} />
+      <main>
+        <PageComponent onNav={setPage} />
+      </main>
+      <GoldDivider />
+      <Footer />
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+</script>
+
+<!-- Tweaks panel -->
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "storeName": "Club Starlight",
+  "tagline": "今夜も笑顔でお迎えします",
+  "goldColor": "#FCD116",
+  "roseColor": "#e8364a",
+  "bgColor": "#08101e"
+}/*EDITMODE-END*/;
+
+(function() {
+  let tweaks = { ...TWEAK_DEFAULTS };
+  let panelVisible = false;
+
+  function applyTweaks(t) {
+    document.documentElement.style.setProperty('--tw-gold', t.goldColor);
+    document.documentElement.style.setProperty('--tw-rose', t.roseColor);
+    document.documentElement.style.setProperty('--tw-bg', t.bgColor);
+  }
+
+  function buildPanel() {
+    const panel = document.createElement('div');
+    panel.id = 'tweaks-panel';
+    panel.style.cssText = `
+      position:fixed;bottom:24px;right:24px;z-index:9999;
+      background:#1e1230;border:1px solid rgba(212,160,48,0.4);border-radius:12px;
+      padding:20px;min-width:220px;box-shadow:0 8px 40px rgba(0,0,0,0.6);
+      font-family:'Noto Sans JP',sans-serif;display:none;
+    `;
+    panel.innerHTML = `
+      <div style="font-size:12px;font-weight:700;color:#d4a030;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px">Tweaks</div>
+      <label style="display:block;margin-bottom:12px">
+        <div style="font-size:11px;color:#8a7490;margin-bottom:4px">店名</div>
+        <input id="tw-storeName" type="text" value="${tweaks.storeName}"
+          style="width:100%;background:#2a1a40;border:1px solid rgba(212,160,48,0.25);color:#f5ede0;padding:6px 10px;border-radius:6px;font-size:12px;outline:none;font-family:inherit" />
+      </label>
+      <label style="display:block;margin-bottom:12px">
+        <div style="font-size:11px;color:#8a7490;margin-bottom:4px">キャッチコピー</div>
+        <input id="tw-tagline" type="text" value="${tweaks.tagline}"
+          style="width:100%;background:#2a1a40;border:1px solid rgba(212,160,48,0.25);color:#f5ede0;padding:6px 10px;border-radius:6px;font-size:12px;outline:none;font-family:inherit" />
+      </label>
+      <label style="display:block;margin-bottom:12px">
+        <div style="font-size:11px;color:#8a7490;margin-bottom:4px">アクセントカラー (Gold)</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input id="tw-goldColor" type="color" value="${tweaks.goldColor}" style="width:36px;height:28px;border-radius:4px;border:none;cursor:pointer" />
+          <span id="tw-goldVal" style="font-size:11px;color:#8a7490">${tweaks.goldColor}</span>
+        </div>
+      </label>
+      <label style="display:block;margin-bottom:12px">
+        <div style="font-size:11px;color:#8a7490;margin-bottom:4px">アクセントカラー (Rose)</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input id="tw-roseColor" type="color" value="${tweaks.roseColor}" style="width:36px;height:28px;border-radius:4px;border:none;cursor:pointer" />
+          <span id="tw-roseVal" style="font-size:11px;color:#8a7490">${tweaks.roseColor}</span>
+        </div>
+      </label>
+      <label style="display:block;margin-bottom:0">
+        <div style="font-size:11px;color:#8a7490;margin-bottom:4px">背景色</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input id="tw-bgColor" type="color" value="${tweaks.bgColor}" style="width:36px;height:28px;border-radius:4px;border:none;cursor:pointer" />
+          <span id="tw-bgVal" style="font-size:11px;color:#8a7490">${tweaks.bgColor}</span>
+        </div>
+      </label>
+    `;
+    document.body.appendChild(panel);
+
+    const post = (edits) => window.parent.postMessage({ type:'__edit_mode_set_keys', edits }, '*');
+
+    panel.querySelector('#tw-storeName').addEventListener('input', e => {
+      tweaks.storeName = e.target.value;
+      post({ storeName: tweaks.storeName });
+    });
+    panel.querySelector('#tw-tagline').addEventListener('input', e => {
+      tweaks.tagline = e.target.value;
+      post({ tagline: tweaks.tagline });
+    });
+    panel.querySelector('#tw-goldColor').addEventListener('input', e => {
+      tweaks.goldColor = e.target.value;
+      panel.querySelector('#tw-goldVal').textContent = e.target.value;
+      document.documentElement.style.setProperty('--tw-gold', tweaks.goldColor);
+      post({ goldColor: tweaks.goldColor });
+    });
+    panel.querySelector('#tw-roseColor').addEventListener('input', e => {
+      tweaks.roseColor = e.target.value;
+      panel.querySelector('#tw-roseVal').textContent = e.target.value;
+      document.documentElement.style.setProperty('--tw-rose', tweaks.roseColor);
+      post({ roseColor: tweaks.roseColor });
+    });
+    panel.querySelector('#tw-bgColor').addEventListener('input', e => {
+      tweaks.bgColor = e.target.value;
+      panel.querySelector('#tw-bgVal').textContent = e.target.value;
+      document.body.style.background = tweaks.bgColor;
+      post({ bgColor: tweaks.bgColor });
+    });
+  }
+
+  window.addEventListener('message', (e) => {
+    if (e.data?.type === '__activate_edit_mode') {
+      panelVisible = true;
+      const p = document.getElementById('tweaks-panel');
+      if (p) p.style.display = 'block';
+    }
+    if (e.data?.type === '__deactivate_edit_mode') {
+      panelVisible = false;
+      const p = document.getElementById('tweaks-panel');
+      if (p) p.style.display = 'none';
+    }
+  });
+
+  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    buildPanel();
+    applyTweaks(tweaks);
+  });
+  if (document.readyState !== 'loading') {
+    buildPanel();
+    applyTweaks(tweaks);
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background: #fffdfa; font-family: 'Noto Sans JP', sans-serif; }
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 64px;
+    background: rgba(255,253,250,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212,160,48,0.2);
+  }
+  .logo { font-family: 'Shippori Mincho', serif; font-size: 22px; font-weight: 700; color: #1a1010; }
+  .logo span { color: #d4a030; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-size: 13px; color: #4a3848; text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; position: relative; padding-bottom: 2px; }
+  .nav-links a::after { content:''; position:absolute; bottom:0; left:0; width:0; height:1px; background:#d4a030; transition: width 0.2s; }
+  .nav-links a:hover { color: #d4a030; }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a.active { color: #d4a030; }
+  .nav-links a.active::after { width: 100%; }
+  .nav-cta { background: #d4a030; color: #120a1e; font-size: 13px; font-weight: 700; padding: 8px 20px; border-radius: 6px; text-decoration: none; letter-spacing: 0.05em; }
+
+  /* Mobile hint */
+  .mobile-note { font-size: 11px; color: #6a5860; text-align: center; padding: 10px; border-top: 1px solid rgba(212,160,48,0.1); }
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">Club <span>Rosa</span></div>
+  <div class="nav-links">
+    <a href="#" class="active">ホーム</a>
+    <a href="#">料金</a>
+    <a href="#">キャスト</a>
+    <a href="#">ダンスタイム</a>
+    <a href="#">アクセス</a>
+  </div>
+  <a href="#" class="nav-cta">ご予約</a>
+</nav>
+<div class="mobile-note">Nav · glass blur · gold underline on hover/active · fixed top</div>
+</body>
+</html>

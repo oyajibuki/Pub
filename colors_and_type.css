@@ -1,0 +1,177 @@
+/* ============================================================
+   フィリピンパブ Design System — Colors & Typography Tokens
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* ─── Base Colors ─────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --color-bg-base:       #fffdfa;   /* warm off-white */
+  --color-bg-surface:    #f5f0ea;   /* card / panel surface */
+  --color-bg-raised:     #ede5d8;   /* elevated surface */
+  --color-bg-overlay:    #e0d8ca;   /* modal / overlay bg */
+
+  /* Primary — Gold */
+  --color-gold-500:      #d4a030;   /* primary accent */
+  --color-gold-400:      #e0b84a;   /* hover / lighter */
+  --color-gold-300:      #f0cc72;   /* highlight */
+  --color-gold-600:      #a87a1a;   /* pressed / dark */
+  --color-gold-subtle:   rgba(212, 160, 48, 0.15);
+  --color-gold-border:   rgba(212, 160, 48, 0.30);
+
+  /* Secondary — Rose Pink */
+  --color-rose-500:      #e8698a;   /* secondary accent */
+  --color-rose-400:      #f08aa6;   /* hover */
+  --color-rose-300:      #f8b0c4;   /* light / pastel */
+  --color-rose-600:      #c0486a;   /* pressed */
+  --color-rose-subtle:   rgba(232, 105, 138, 0.15);
+
+  /* Tertiary — Coral */
+  --color-coral-500:     #f0a07a;
+  --color-coral-400:     #f8bc9a;
+  --color-coral-subtle:  rgba(240, 160, 122, 0.15);
+
+  /* Text */
+  --color-text-primary:  #1a1010;   /* dark text */
+  --color-text-secondary:#4a3848;   /* muted */
+  --color-text-muted:    #6a5860;   /* very muted */
+  --color-text-inverse:  #fffdfa;   /* on dark bg */
+  --color-text-gold:     #d4a030;
+  --color-text-rose:     #e8698a;
+
+  /* Borders / Dividers */
+  --color-border:        rgba(212, 160, 48, 0.25);
+  --color-border-subtle: rgba(212, 160, 48, 0.12);
+  --color-border-strong: rgba(212, 160, 48, 0.60);
+
+  /* Semantic */
+  --color-success:       #6fcf97;
+  --color-warning:       #f2c94c;
+  --color-error:         #eb5757;
+  --color-info:          #56ccf2;
+}
+
+/* ─── Typography Scale ─────────────────────────────────────── */
+:root {
+  /* Font families */
+  --font-display:   'Shippori Mincho', 'Hiragino Mincho ProN', serif;
+  --font-body:      'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  --font-price:     'Playfair Display', 'Georgia', serif;
+
+  /* Font sizes */
+  --text-xs:    0.75rem;    /* 12px */
+  --text-sm:    0.875rem;   /* 14px */
+  --text-base:  1rem;       /* 16px */
+  --text-md:    1.125rem;   /* 18px */
+  --text-lg:    1.25rem;    /* 20px */
+  --text-xl:    1.5rem;     /* 24px */
+  --text-2xl:   2rem;       /* 32px */
+  --text-3xl:   2.5rem;     /* 40px */
+  --text-4xl:   3.5rem;     /* 56px */
+  --text-5xl:   5rem;       /* 80px */
+
+  /* Line heights */
+  --leading-tight:  1.2;
+  --leading-snug:   1.4;
+  --leading-normal: 1.7;
+  --leading-relaxed:1.9;    /* ideal for Japanese body text */
+
+  /* Letter spacing */
+  --tracking-tight:  -0.02em;
+  --tracking-normal:  0.05em;
+  --tracking-wide:    0.12em;
+  --tracking-widest:  0.2em;
+
+  /* Font weights */
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-bold:    700;
+  --weight-black:   800;
+}
+
+/* ─── Spacing ──────────────────────────────────────────────── */
+:root {
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-20:  80px;
+  --space-24:  96px;
+  --space-32:  128px;
+}
+
+/* ─── Radii ─────────────────────────────────────────────────── */
+:root {
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   20px;
+  --radius-2xl:  32px;
+  --radius-full: 9999px;
+}
+
+/* ─── Shadows ───────────────────────────────────────────────── */
+:root {
+  --shadow-sm:      0 2px 8px rgba(0,0,0,0.3);
+  --shadow-md:      0 4px 24px rgba(0,0,0,0.5);
+  --shadow-lg:      0 8px 48px rgba(0,0,0,0.6);
+  --shadow-glow-gold: 0 0 20px rgba(212,160,48,0.25), 0 0 60px rgba(212,160,48,0.1);
+  --shadow-glow-rose: 0 0 20px rgba(232,105,138,0.25);
+  --shadow-card:    inset 0 1px 0 rgba(212,160,48,0.15), 0 4px 24px rgba(0,0,0,0.4);
+}
+
+/* ─── Transitions ───────────────────────────────────────────── */
+:root {
+  --ease-smooth:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast:   0.15s var(--ease-smooth);
+  --transition-base:   0.25s var(--ease-smooth);
+  --transition-slow:   0.45s var(--ease-smooth);
+}
+
+/* ─── Semantic Roles (element-level) ────────────────────────── */
+:root {
+  --h1-font:    var(--font-display);
+  --h1-size:    var(--text-4xl);
+  --h1-weight:  var(--weight-bold);
+  --h1-leading: var(--leading-tight);
+  --h1-color:   var(--color-text-primary);
+
+  --h2-font:    var(--font-display);
+  --h2-size:    var(--text-3xl);
+  --h2-weight:  var(--weight-medium);
+  --h2-leading: var(--leading-snug);
+  --h2-color:   var(--color-text-primary);
+
+  --h3-font:    var(--font-display);
+  --h3-size:    var(--text-xl);
+  --h3-weight:  var(--weight-medium);
+  --h3-leading: var(--leading-snug);
+  --h3-color:   var(--color-text-primary);
+
+  --body-font:    var(--font-body);
+  --body-size:    var(--text-base);
+  --body-weight:  var(--weight-regular);
+  --body-leading: var(--leading-relaxed);
+  --body-color:   var(--color-text-secondary);
+
+  --label-font:    var(--font-body);
+  --label-size:    var(--text-sm);
+  --label-weight:  var(--weight-medium);
+  --label-tracking:var(--tracking-wide);
+  --label-color:   var(--color-text-muted);
+  --label-transform: uppercase;
+
+  --price-font:    var(--font-price);
+  --price-size:    var(--text-2xl);
+  --price-weight:  var(--weight-bold);
+  --price-color:   var(--color-gold-300);
+}
