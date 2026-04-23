@@ -1,4 +1,4 @@
-// Club Starlight — Shared Components
+// Club Starlight — Shared Components (Updated: 2026-04-24)
 // Load with <script type="text/babel" src="Components.jsx">
 
 const { useState, useEffect, useRef } = React;
