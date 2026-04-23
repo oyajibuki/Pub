@@ -2,15 +2,22 @@
 function AccessPage() {
   const rows = [
     ['営業時間', '18:00〜23:00'],
-    ['定休日', '毎週月曜日'],
+    ['定休日', '年中無休'],
     ['住所', '神奈川県平塚市紅谷町16-2 平塚西口会館3F'],
     ['最寄り駅', 'JR東海道本線「平塚駅」徒歩1分'],
     ['電話番号', '0463-22-7799'],
     ['Instagram', '@starlight_hiratsuka'],
   ];
 
+  const darkBox = {
+    background: 'rgba(4,10,28,0.88)',
+    backdropFilter: 'blur(8px)',
+    border: '1px solid rgba(0,56,168,0.4)',
+    borderRadius: 12,
+  };
+
   return (
-    <div style={{ paddingTop:80, minHeight:'100vh', background:T.bg }}>
+    <div style={{ paddingTop:80, minHeight:'100vh', background:'transparent' }}>
       <Section>
         <SectionHeading
           label="ACCESS"
@@ -20,33 +27,49 @@ function AccessPage() {
 
         <div style={{ display:'flex', gap:32, flexWrap:'wrap' }}>
           {/* Info table */}
-          <div style={{ flex:'1 0 280px', background:T.surface, border:`1px solid ${T.border}`,
-            borderRadius:12, overflow:'hidden', boxShadow:'inset 0 1px 0 rgba(212,160,48,0.12), 0 4px 24px rgba(0,0,0,0.35)' }}>
+          <div style={{ flex:'1 0 280px', ...darkBox, overflow:'hidden' }}>
             {rows.map(([k,v],i) => (
               <div key={i} style={{
-                display:'flex', borderBottom: i<rows.length-1 ? `1px solid ${T.borderS}` : 'none',
+                display:'flex', borderBottom: i<rows.length-1 ? '1px solid rgba(0,56,168,0.25)' : 'none',
               }}>
-                <div style={{ width:110, flexShrink:0, padding:'14px 16px',
-                  fontSize:11, color:T.gold, letterSpacing:'0.08em',
-                  fontFamily:"'Noto Sans JP',sans-serif", lineHeight:1.7 }}>{k}</div>
-                <div style={{ padding:'14px 16px', fontSize:13, color:T.text, lineHeight:1.7 }}>{v}</div>
+                <div style={{
+                  width:120, flexShrink:0, padding:'16px 18px',
+                  fontSize:13, color:'#7eb8f7', letterSpacing:'0.05em',
+                  fontFamily:"'Noto Sans JP',sans-serif", lineHeight:1.7, fontWeight:500,
+                }}>{k}</div>
+                <div style={{ padding:'16px 18px', fontSize:15, color:'#ffffff', lineHeight:1.7, fontFamily:"'Noto Sans JP',sans-serif" }}>{v}</div>
               </div>
             ))}
           </div>
 
-          {/* Map placeholder */}
-          <div style={{ flex:'1 0 280px', background:T.raised, border:`1px solid ${T.border}`,
-            borderRadius:12, overflow:'hidden', minHeight:260 }}>
-            <img src="../../assets/storefront.png" alt="スターライト外観"
+          {/* Storefront */}
+          <div style={{ flex:'1 0 280px', ...darkBox, overflow:'hidden', minHeight:260 }}>
+            <img src="./storefront.png" alt="スターライト外観"
               style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
           </div>
         </div>
 
+        {/* Notes */}
+        <div style={{
+          background: 'rgba(4,10,28,0.82)', border: '1px solid rgba(0,56,168,0.35)',
+          borderRadius: 10, padding: '20px 24px', marginTop: 32,
+          fontSize: 14, color: '#c8d8e8', lineHeight: 2,
+          fontFamily: "'Noto Sans JP',sans-serif",
+        }}>
+          ※ キャストの出勤状況は日により異なります。詳しくはお電話でご確認ください。<br />
+          ※ 指名料はセット料金に含まれています。
+        </div>
+
         {/* CTA */}
-        <div style={{ textAlign:'center', marginTop:48 }}>
-          <p style={{ fontSize:14, color:T.textSub, marginBottom:20, lineHeight:1.9,
-            fontFamily:"'Noto Sans JP',sans-serif" }}>
-            ご予約・ご来店のご相談はお気軽にどうぞ。<br />ご来店をお待ちしております 🌸
+        <div style={{
+          textAlign:'center', marginTop:32,
+          background: 'rgba(4,10,28,0.82)', border: '1px solid rgba(0,56,168,0.35)',
+          borderRadius: 12, padding: '32px 24px',
+        }}>
+          <p style={{ fontSize:16, color:'#ffffff', marginBottom:24, lineHeight:2,
+            fontFamily:"'Noto Sans JP',sans-serif", fontWeight:500 }}>
+            お気軽にお電話・SNSでお問い合わせください。<br />
+            <span style={{ fontSize:14, color:'#c8d8e8', fontWeight:400 }}>ご来店をお待ちしております。</span>
           </p>
           <div style={{ display:'flex', gap:14, justifyContent:'center', flexWrap:'wrap' }}>
             <Btn variant="primary">お電話でご予約</Btn>

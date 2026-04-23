@@ -6,21 +6,21 @@ const { useState, useEffect, useRef } = React;
 /* ── Tokens ──────────────────────────────────────────────── */
 // Philippine flag palette — adapted for dark nightclub aesthetic
 const T = {
-  bg:      '#08101e',          // deep navy
-  surface: '#0f1d30',          // card surface
-  raised:  '#162840',          // elevated
-  gold:    '#FCD116',          // Philippine sun gold
-  goldL:   '#fde040',
-  goldLL:  '#fff176',
-  rose:    '#e8364a',          // Philippine red (softened)
+  bg:      '#0a1628',          // dark navy overlay
+  surface: 'rgba(10,22,40,0.82)',  // card surface
+  raised:  'rgba(0,30,60,0.75)',   // elevated
+  gold:    '#ffffff',          // white (readable)
+  goldL:   '#e8eaf6',
+  goldLL:  '#f0f4ff',
+  rose:    '#CE1126',          // Philippine red (softened)
   coral:   '#f07a5a',
-  blue:    '#1a6fd4',          // Philippine royal blue (lightened)
-  blueL:   '#3d8fee',
-  text:    '#f5f0e8',
-  textSub: '#b8c8d8',
-  textMute:'#6a88a0',
-  border:  'rgba(252,209,22,0.28)',
-  borderS: 'rgba(252,209,22,0.12)',
+  blue:    '#0038A8',          // Philippine royal blue (lightened)
+  blueL:   '#4a7fd4',
+  text:    '#f0eee8',
+  textSub: '#c8d8e8',
+  textMute:'#8aa4be',
+  border:  'rgba(0,56,168,0.45)',
+  borderS: 'rgba(0,56,168,0.20)',
 };
 
 /* ── Nav ─────────────────────────────────────────────────── */
@@ -32,39 +32,15 @@ function Nav({ page, onNav }) {
     { id:'dance',   label:'ダンスタイム'},
     { id:'access',  label:'アクセス'   },
   ];
-  const s = {
-    nav: {
-      position:'fixed', top:0, left:0, right:0, zIndex:100,
-      display:'flex', alignItems:'center', justifyContent:'space-between',
-      padding:'0 40px', height:64,
-      background:'rgba(18,10,30,0.88)',
-      backdropFilter:'blur(14px)',
-      borderBottom:`1px solid ${T.border}`,
-    },
-    logo: { fontFamily:"'Shippori Mincho',serif", fontSize:22, fontWeight:700, color:T.text, cursor:'pointer', userSelect:'none' },
-    logoSpan: { color:T.gold },
-    links: { display:'flex', gap:32 },
-    link: (active) => ({
-      fontSize:13, color: active ? T.gold : T.textSub,
-      textDecoration:'none', letterSpacing:'0.05em', cursor:'pointer',
-      paddingBottom:2, borderBottom: active ? `1px solid ${T.gold}` : '1px solid transparent',
-      transition:'all 0.2s',
-    }),
-    cta: {
-      background:T.gold, color:T.bg, fontSize:13, fontWeight:700,
-      padding:'8px 20px', borderRadius:6, cursor:'pointer', border:'none',
-      letterSpacing:'0.05em', fontFamily:"'Noto Sans JP',sans-serif",
-    },
-  };
   return (
-    <nav style={s.nav}>
-      <div style={s.logo} onClick={() => onNav('home')}>Club <span style={s.logoSpan}>Starlight</span></div>
-      <div style={s.links}>
+    <nav className="site-nav">
+      <img src="./logo.png" alt="Club Starlight" onClick={() => onNav('home')} className="nav-logo" />
+      <div className="nav-links">
         {links.map(l => (
-          <span key={l.id} style={s.link(page===l.id)} onClick={() => onNav(l.id)}>{l.label}</span>
+          <span key={l.id} className={'nav-link' + (page===l.id ? ' active' : '')} onClick={() => onNav(l.id)}>{l.label}</span>
         ))}
       </div>
-      <button style={s.cta} onClick={() => onNav('access')}>ご予約</button>
+      <button className="nav-cta" onClick={() => onNav('access')}>ご予約</button>
     </nav>
   );
 }
@@ -72,7 +48,7 @@ function Nav({ page, onNav }) {
 /* ── Footer ──────────────────────────────────────────────── */
 function Footer() {
   const s = {
-    wrap: { background:'#040c18', borderTop:`1px solid ${T.border}`, padding:'40px 40px 24px', textAlign:'center' },
+    wrap: { background:'rgba(8,16,40,0.92)', borderTop:`1px solid ${T.border}`, padding:'40px 40px 24px', textAlign:'center' },
     logo: { fontFamily:"'Shippori Mincho',serif", fontSize:20, fontWeight:700, color:T.text, marginBottom:8 },
     logoSpan: { color:T.gold },
     sub: { fontSize:12, color:T.textMute, marginBottom:20, lineHeight:1.9 },
@@ -82,7 +58,7 @@ function Footer() {
   return (
     <footer style={s.wrap}>
       <div style={s.logo}>Club <span style={s.logoSpan}>Starlight</span></div>
-      <p style={s.sub}>神奈川県平塚市紅谷男16-2 平塚西口会館3F<br />営業時間 18:00〜23:00（月曜定休）<br />ご来店をお待ちしております 🌸</p>
+      <p style={s.sub}>神奈川県平塚市紅谷男16-2 平塚西口会館3F<br />営業時間 18:00〜23:00（年中無休）<br />ご来店をお待ちしております 🌸</p>
       <div style={s.divider} />
       <p style={s.copy}>© 2025 Club Starlight. All rights reserved.</p>
     </footer>
@@ -101,10 +77,15 @@ function Section({ id, children, style }) {
 /* ── Section Heading ─────────────────────────────────────── */
 function SectionHeading({ label, title, sub }) {
   return (
-    <div style={{ textAlign:'center', marginBottom:48 }}>
-      <p style={{ fontSize:11, color:T.gold, letterSpacing:'0.2em', textTransform:'uppercase', marginBottom:12, fontFamily:"'Noto Sans JP',sans-serif" }}>{label}</p>
-      <h2 style={{ fontFamily:"'Shippori Mincho',serif", fontSize:36, fontWeight:600, color:T.text, lineHeight:1.3, marginBottom:sub?12:0 }}>{title}</h2>
-      {sub && <p style={{ fontSize:14, color:T.textSub, lineHeight:1.9 }}>{sub}</p>}
+    <div style={{
+      textAlign:'center', marginBottom:48,
+      background:'rgba(4,10,28,0.82)', backdropFilter:'blur(8px)',
+      borderRadius:12, padding:'28px 32px',
+      border:'1px solid rgba(0,56,168,0.3)',
+    }}>
+      <p style={{ fontSize:11, color:'#7eb8f7', letterSpacing:'0.2em', textTransform:'uppercase', marginBottom:12, fontFamily:"'Noto Sans JP',sans-serif" }}>{label}</p>
+      <h2 style={{ fontFamily:"'Shippori Mincho',serif", fontSize:36, fontWeight:600, color:'#ffffff', lineHeight:1.3, marginBottom:sub?12:0, textShadow:'0 2px 12px rgba(0,0,0,0.5)' }}>{title}</h2>
+      {sub && <p style={{ fontSize:14, color:'#c8d8e8', lineHeight:1.9 }}>{sub}</p>}
     </div>
   );
 }
@@ -136,7 +117,7 @@ function Btn({ children, variant='primary', onClick, style }) {
   const [hov, setHov] = useState(false);
   const variants = {
     primary: {
-      background: hov ? T.goldL : T.gold, color:T.bg,
+      background: hov ? T.blueL : T.blue, color:'#ffffff',
       border:'none', fontWeight:700,
     },
     secondary: {
@@ -177,8 +158,8 @@ function CastCard({ name, origin, specialty, badge, badgeVariant='rose', hue=0 }
         border:`1px solid ${hov ? T.gold : T.border}`,
         borderRadius:12, overflow:'hidden',
         boxShadow: hov
-          ? `0 0 20px rgba(212,160,48,0.22), 0 8px 32px rgba(0,0,0,0.5)`
-          : 'inset 0 1px 0 rgba(212,160,48,0.12), 0 4px 24px rgba(0,0,0,0.4)',
+          ? `0 0 20px rgba(0,56,168,0.5), 0 8px 32px rgba(0,0,0,0.5)`
+          : '0 4px 24px rgba(0,0,0,0.4)',
         transform: hov ? 'scale(1.02)' : 'scale(1)',
         transition:'all 0.25s cubic-bezier(0.25,0.46,0.45,0.94)',
         cursor:'pointer', flex:'0 0 180px',
@@ -187,8 +168,8 @@ function CastCard({ name, origin, specialty, badge, badgeVariant='rose', hue=0 }
       {/* Avatar placeholder */}
       <div style={{
         height:160, display:'flex', alignItems:'center', justifyContent:'center',
-        background:`linear-gradient(135deg, hsl(${280+hue},40%,22%) 0%, hsl(${260+hue},35%,14%) 100%)`,
-        fontSize:48, color:`hsla(${300+hue},60%,70%,0.4)`,
+        background:`linear-gradient(135deg, hsl(${220+hue},60%,22%) 0%, hsl(${210+hue},55%,14%) 100%)`,
+        fontSize:48, color:`hsla(${220+hue},70%,70%,0.5)`,
         userSelect:'none',
       }}>♪</div>
       <div style={{ padding:'14px 16px' }}>
@@ -211,8 +192,8 @@ function PriceCard({ label, duration, price, priceNote, features, highlighted })
       border:`1px solid ${highlighted ? T.gold : T.border}`,
       borderRadius:12, padding:'28px 24px', flex:1,
       boxShadow: highlighted
-        ? `0 0 28px rgba(212,160,48,0.2), inset 0 1px 0 rgba(212,160,48,0.2), 0 4px 24px rgba(0,0,0,0.4)`
-        : 'inset 0 1px 0 rgba(212,160,48,0.1), 0 4px 20px rgba(0,0,0,0.35)',
+        ? `0 0 28px rgba(0,56,168,0.4), 0 4px 24px rgba(0,0,0,0.5)`
+        : '0 4px 20px rgba(0,0,0,0.4)',
       position:'relative',
     }}>
       {highlighted && (
