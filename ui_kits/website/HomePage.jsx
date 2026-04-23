@@ -20,6 +20,7 @@ function HomePage({ onNav }) {
     lineHeight: 1.15, marginBottom: 24, textAlign: 'center',
     textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.6)',
   };
+  // className applied below for mobile override
   const subStyle = {
     fontFamily: "'Noto Sans JP',sans-serif",
     fontSize: 15, color: '#d8e8f4', lineHeight: 1.9,
@@ -78,11 +79,11 @@ function HomePage({ onNav }) {
       <div style={heroStyle}>
         <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '0 24px', maxWidth: 700 }}>
           <p style={taglineStyle}>WELCOME TO CLUB STARLIGHT</p>
-          <h1 style={h1Style}>
+          <h1 style={h1Style} className="hero-h1">
             今夜も笑顔で<br />
             <span style={{ color: '#FCD116', textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}>お迎えします</span>
           </h1>
-          <p style={subStyle}>
+          <p style={subStyle} className="hero-sub">
             神奈川県平塚市、JR平塚駅から徒歩1分。<br />
             フィリピン出身のキャストが皆さまのひとときを盛り上げます。<br />
             明朗会計でご安心ください。
@@ -92,7 +93,7 @@ function HomePage({ onNav }) {
             <Btn variant="secondary" onClick={() => onNav('pricing')}>料金・プランを見る</Btn>
           </div>
 
-          <div style={statsRow}>
+          <div style={statsRow} className="stats-row">
             {stat('18:00', '〜', '営業開始')}
             <div style={{ width: 1, background: 'rgba(0,56,168,0.5)', alignSelf: 'stretch' }} />
             {stat('23:00', '', 'クローズ')}

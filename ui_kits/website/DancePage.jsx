@@ -20,7 +20,7 @@ function DancePage() {
 
   return (
     <div style={{ paddingTop:80, minHeight:'100vh', background:'transparent' }}>
-      <Section>
+      <section style={{ padding:'80px 40px', maxWidth:1100, margin:'0 auto' }} className="section-inner" >
         <SectionHeading
           label="DANCE TIME"
           title="ダンスタイム時間割"
@@ -29,38 +29,28 @@ function DancePage() {
 
         {/* Schedule list */}
         <div style={{ maxWidth:700, margin:'0 auto', ...darkBox }}>
-          {SCHEDULE.map((row, i) => (
-            <div key={i} style={{
-              display:'flex', alignItems:'center', gap:20,
-              padding:'16px 0',
-              borderBottom: i < SCHEDULE.length - 1 ? '1px solid rgba(0,56,168,0.25)' : 'none',
-            }}>
-              {/* Type dot */}
-              <div style={{ flexShrink:0 }}>
-                <div style={{
-                  width:10, height:10, borderRadius:'50%',
-                  background: row.type==='dance' ? '#CE1126' : '#FCD116',
-                  boxShadow: row.type==='dance' ? '0 0 8px rgba(206,17,38,0.6)' : '0 0 8px rgba(252,209,22,0.5)',
-                }} />
-              </div>
-              {/* Time */}
-              <div style={{ fontFamily:"'Shippori Mincho',serif", fontSize:15, color:'#ffffff', minWidth:148, flexShrink:0 }}>
-                {row.time}
-              </div>
-              {/* Event */}
-              <div style={{ flex:1 }}>
-                <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:4 }}>
-                  <span style={{ fontSize:14, color:'#f0eee8', fontFamily:"'Noto Sans JP',sans-serif", fontWeight:500 }}>
-                    {row.event}
-                  </span>
-                  <Badge variant={row.type==='dance' ? 'rose' : 'gold'}>
-                    {row.type==='dance' ? 'ダンス' : 'フリー'}
-                  </Badge>
+          {SCHEDULE.map((row, i) => {
+            const dotColor = row.type==='dance' ? '#CE1126' : '#FCD116';
+            const dotShadow = row.type==='dance' ? '0 0 8px rgba(206,17,38,0.6)' : '0 0 8px rgba(252,209,22,0.5)';
+            return (
+              <div key={i} className="sched-row">
+                {/* Mobile: dot+time on one line; Desktop: dot | time | event */}
+                <div className="sched-time-row">
+                  <div className="sched-dot" style={{ background: dotColor, boxShadow: dotShadow }} />
+                  <div className="sched-time">{row.time}</div>
                 </div>
-                <div style={{ fontSize:12, color:'#8aa4be', fontFamily:"'Noto Sans JP',sans-serif" }}>出演：{row.performers}</div>
+                <div className="sched-event">
+                  <div className="sched-event-top">
+                    <span className="sched-event-name">{row.event}</span>
+                    <Badge variant={row.type==='dance' ? 'rose' : 'gold'}>
+                      {row.type==='dance' ? 'ダンス' : 'フリー'}
+                    </Badge>
+                  </div>
+                  <div className="sched-performers">出演：{row.performers}</div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Legend */}
@@ -77,7 +67,7 @@ function DancePage() {
             ※ スケジュールは予告なく変更になる場合があります。
           </p>
         </div>
-      </Section>
+      </section>
     </div>
   );
 }

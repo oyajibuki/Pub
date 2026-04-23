@@ -58,7 +58,7 @@ function Footer() {
   return (
     <footer style={s.wrap}>
       <div style={s.logo}>Club <span style={s.logoSpan}>Starlight</span></div>
-      <p style={s.sub}>神奈川県平塚市紅谷男16-2 平塚西口会館3F<br />営業時間 18:00〜23:00（年中無休）<br />ご来店をお待ちしております 🌸</p>
+      <p style={s.sub}>神奈川県平塚市紅谷町16-2 平塚西口会館3F<br />営業時間 18:00〜23:00（年中無休）<br />ご来店をお待ちしております 🌸</p>
       <div style={s.divider} />
       <p style={s.copy}>© 2025 Club Starlight. All rights reserved.</p>
     </footer>
@@ -77,7 +77,7 @@ function Section({ id, children, style }) {
 /* ── Section Heading ─────────────────────────────────────── */
 function SectionHeading({ label, title, sub }) {
   return (
-    <div style={{
+    <div className="section-heading" style={{
       textAlign:'center', marginBottom:48,
       background:'rgba(4,10,28,0.82)', backdropFilter:'blur(8px)',
       borderRadius:12, padding:'28px 32px',

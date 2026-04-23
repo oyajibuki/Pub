@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/x-icon" href="../../favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
 <title>Club Starlight — フィリピンパブ</title>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
@@ -57,6 +61,51 @@
     white-space: nowrap;
   }
   .nav-cta:hover { background: #e8364a; }
+
+  /* ── Section ── */
+  .section-inner { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+
+  /* ── Dance schedule ── */
+  .sched-row {
+    display: flex; align-items: center; gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(0,56,168,0.25);
+  }
+  .sched-row:last-child { border-bottom: none; }
+  .sched-dot { flex-shrink: 0; width: 10px; height: 10px; border-radius: 50%; }
+  .sched-time {
+    font-family: 'Shippori Mincho', serif; font-size: 15px; color: #ffffff;
+    min-width: 148px; flex-shrink: 0;
+  }
+  .sched-event { flex: 1; }
+  .sched-event-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+  .sched-event-name { font-size: 14px; color: #f0eee8; font-family: 'Noto Sans JP', sans-serif; font-weight: 500; }
+  .sched-performers { font-size: 12px; color: #8aa4be; font-family: 'Noto Sans JP', sans-serif; }
+
+  /* ── Mobile ── */
+  @media (max-width: 600px) {
+    .section-inner { padding: 60px 16px; }
+
+    /* Dance schedule — stack time above event */
+    .sched-row { flex-wrap: wrap; gap: 8px; padding: 14px 0; align-items: flex-start; }
+    .sched-time-row { display: flex; align-items: center; gap: 10px; width: 100%; }
+    .sched-time { min-width: unset; font-size: 13px; }
+    .sched-event { width: 100%; padding-left: 20px; }
+    .sched-event-name { font-size: 14px; }
+
+    /* Hero */
+    .hero-h1 { font-size: 40px !important; }
+    .hero-sub { font-size: 13px !important; }
+    .stats-row { gap: 20px !important; padding: 20px 16px !important; }
+
+    /* Section heading */
+    .section-heading { padding: 20px 16px !important; }
+    .section-heading h2 { font-size: 26px !important; }
+
+    /* Nav logo */
+    .nav-logo { height: 36px; }
+    .nav-link { padding: 4px 10px; font-size: 12px; }
+  }
 </style>
 </head>
 <body>
