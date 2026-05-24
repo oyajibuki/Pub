@@ -279,5 +279,11 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   }
 })();
 </script>
+<script>
+// アクセスカウンター（ページ表示時に1回だけ送信）
+fetch("https://script.google.com/macros/s/AKfycbznxYkj5ixnK_pHkGR8LUYhEYdvSYpaiF3x4LaZy964wlu068oak1X1uuIiyqCEtGWF/exec?page=starlight", {
+  mode: "no-cors"
+}).catch(() => {});
+</script>
 </body>
 </html>
