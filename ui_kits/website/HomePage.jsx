@@ -94,9 +94,9 @@ function HomePage({ onNav }) {
           </div>
 
           <div style={statsRow} className="stats-row">
-            {stat('18:00', '〜', '営業開始')}
+            {stat('20:00', '〜', '営業開始')}
             <div style={{ width: 1, background: 'rgba(0,56,168,0.5)', alignSelf: 'stretch' }} />
-            {stat('23:00', '', 'クローズ')}
+            {stat('24:00', '', 'クローズ')}
             <div style={{ width: 1, background: 'rgba(0,56,168,0.5)', alignSelf: 'stretch' }} />
             {stat('平塚', '', '神奈川県')}
             <div style={{ width: 1, background: 'rgba(0,56,168,0.5)', alignSelf: 'stretch' }} />

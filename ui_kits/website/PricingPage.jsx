@@ -42,21 +42,18 @@ function PricingPage() {
             <div>
               <p style={labelStyle}>セット料金（1時間）</p>
               <div style={rowStyle}>
-                <span style={priceStyle}>¥8,000</span>
+                <span style={priceStyle}>¥4,000</span>
                 <span style={{ fontSize: 14, color: '#8aa4be' }}>税込</span>
               </div>
-              <p style={{ fontSize: 13, color: '#c8d8e8', marginTop: 8, fontFamily: "'Noto Sans JP',sans-serif", lineHeight: 1.8 }}>
-                焼酎飲み放題 ／ 指名料込み
-              </p>
             </div>
             <div>
               <p style={labelStyle}>延長（1時間ごと）</p>
               <div style={rowStyle}>
-                <span style={{ ...priceStyle, fontSize: 36 }}>¥8,000</span>
+                <span style={{ ...priceStyle, fontSize: 36 }}>¥4,000</span>
                 <span style={{ fontSize: 14, color: '#8aa4be' }}>税込</span>
               </div>
               <p style={{ fontSize: 13, color: '#c8d8e8', marginTop: 8, fontFamily: "'Noto Sans JP',sans-serif", lineHeight: 1.8 }}>
-                1時間単位 / 指名料込み
+                1時間単位
               </p>
             </div>
           </div>
@@ -65,10 +62,11 @@ function PricingPage() {
         {/* Other charges */}
         <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
           {[
-            { label: 'ガールズドリンク', price: '¥1,000', note: 'ワンドリンク' },
+            { label: '指名料', price: '¥2,000', note: '1名あたり' },
+            { label: 'Drink LD', price: '¥1,000', note: 'レディースドリンク' },
             { label: 'カラオケ', price: '¥200', note: '1曲 / 現金のみ' },
             { label: 'ショータイム', price: '無料', note: '毎晩開催' },
-            { label: 'ボトルキープ', price: 'なし', note: '' },
+            { label: 'ボトルキープ', price: 'OK', note: 'お預かりします' },
           ].map(({ label, price, note }, i) => (
             <div key={i} style={{ ...cardStyle, flex: '1 0 160px' }}>
               <p style={labelStyle}>{label}</p>

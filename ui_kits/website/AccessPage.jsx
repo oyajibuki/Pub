@@ -1,7 +1,7 @@
 // AccessPage.jsx — Hours, location, contact
 function AccessPage() {
   const rows = [
-    ['営業時間', '18:00〜23:00'],
+    ['営業時間', '20:00〜24:00'],
     ['定休日', '年中無休'],
     ['住所', '神奈川県平塚市紅谷町16-2 平塚西口会館3F'],
     ['最寄り駅', 'JR東海道本線「平塚駅」徒歩1分'],
