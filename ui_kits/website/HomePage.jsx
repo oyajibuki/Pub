@@ -89,8 +89,7 @@ function HomePage({ onNav }) {
             明朗会計でご安心ください。
           </p>
           <div style={ctaRow}>
-            <Btn variant="primary" onClick={() => onNav('cast')}>キャスト一覧を見る</Btn>
-            <Btn variant="secondary" onClick={() => onNav('pricing')}>料金・プランを見る</Btn>
+            <Btn variant="primary" onClick={() => onNav('pricing')}>料金・プランを見る</Btn>
           </div>
 
           <div style={statsRow} className="stats-row">

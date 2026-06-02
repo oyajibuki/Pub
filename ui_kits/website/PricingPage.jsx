@@ -43,14 +43,14 @@ function PricingPage() {
               <p style={labelStyle}>セット料金（1時間）</p>
               <div style={rowStyle}>
                 <span style={priceStyle}>¥4,000</span>
-                <span style={{ fontSize: 14, color: '#8aa4be' }}>税込</span>
+                <span style={{ fontSize: 14, color: '#8aa4be' }}>税別</span>
               </div>
             </div>
             <div>
               <p style={labelStyle}>延長（1時間ごと）</p>
               <div style={rowStyle}>
                 <span style={{ ...priceStyle, fontSize: 36 }}>¥4,000</span>
-                <span style={{ fontSize: 14, color: '#8aa4be' }}>税込</span>
+                <span style={{ fontSize: 14, color: '#8aa4be' }}>税別</span>
               </div>
               <p style={{ fontSize: 13, color: '#c8d8e8', marginTop: 8, fontFamily: "'Noto Sans JP',sans-serif", lineHeight: 1.8 }}>
                 1時間単位
@@ -78,7 +78,7 @@ function PricingPage() {
 
         {/* Notes */}
         <div style={noteStyle}>
-          ※ 料金はすべて税込です。<br />
+          ※ 料金はすべて税別です。<br />
           ※ ご不明な点はお気軽にお問い合わせください。
         </div>
       </Section>

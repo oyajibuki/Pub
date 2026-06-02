@@ -28,7 +28,6 @@ function Nav({ page, onNav }) {
   const links = [
     { id:'home',    label:'ホーム'     },
     { id:'pricing', label:'料金'       },
-    { id:'cast',    label:'キャスト'   },
     { id:'dance',   label:'ダンスタイム'},
     { id:'access',  label:'アクセス'   },
   ];
