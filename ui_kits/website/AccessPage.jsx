@@ -6,7 +6,6 @@ function AccessPage() {
     ['住所', '神奈川県平塚市紅谷町16-2 平塚西口会館3F'],
     ['最寄り駅', 'JR東海道本線「平塚駅」徒歩1分'],
     ['電話番号', '0463-22-7799'],
-    ['Instagram', '@starlight_hiratsuka'],
   ];
 
   const darkBox = {
@@ -22,7 +21,7 @@ function AccessPage() {
         <SectionHeading
           label="ACCESS"
           title="アクセス・お問い合わせ"
-          sub="お気軽にお電話・SNSでお問い合わせください。"
+          sub="お気軽にお電話でお問い合わせください。"
         />
 
         <div style={{ display:'flex', gap:32, flexWrap:'wrap' }}>
@@ -68,12 +67,11 @@ function AccessPage() {
         }}>
           <p style={{ fontSize:16, color:'#ffffff', marginBottom:24, lineHeight:2,
             fontFamily:"'Noto Sans JP',sans-serif", fontWeight:500 }}>
-            お気軽にお電話・SNSでお問い合わせください。<br />
+            お気軽にお電話でお問い合わせください。<br />
             <span style={{ fontSize:14, color:'#c8d8e8', fontWeight:400 }}>ご来店をお待ちしております。</span>
           </p>
           <div style={{ display:'flex', gap:14, justifyContent:'center', flexWrap:'wrap' }}>
             <Btn variant="primary">お電話でご予約</Btn>
-            <Btn variant="secondary">Instagramを見る</Btn>
           </div>
         </div>
       </Section>

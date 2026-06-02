@@ -1,8 +1,12 @@
 // DancePage.jsx — Dance time schedule
 const SCHEDULE = [
+  { time:'20:00〜20:30', event:'フリータイム♪',  performers:'—',          type:'free'  },
   { time:'20:30〜21:00', event:'ショータイム①',  performers:'全キャスト', type:'dance' },
+  { time:'21:00〜21:30', event:'フリータイム♪',  performers:'—',          type:'free'  },
   { time:'21:30〜22:00', event:'ショータイム②',  performers:'全キャスト', type:'dance' },
+  { time:'22:00〜23:00', event:'フリータイム♪',  performers:'—',          type:'free'  },
   { time:'23:00〜23:30', event:'ショータイム③',  performers:'全キャスト', type:'dance' },
+  { time:'23:30〜24:00', event:'フリータイム♪',  performers:'—',          type:'free'  },
 ];
 
 function DancePage() {

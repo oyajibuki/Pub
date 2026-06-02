@@ -1,5 +1,4 @@
 // CastPage.jsx — Cast member grid
-const { useState } = React;
 
 const CAST = [
   { name:'マリア',      origin:'セブ島出身',   specialty:'ダンス・歌',  badge:'人気No.1', badgeVariant:'rose',  hue:0   },
@@ -20,14 +19,6 @@ const CAST = [
 ];
 
 function CastPage() {
-  const [filter, setFilter] = useState('全員');
-
-  const cast = filter === '全員'  ? CAST
-    : filter === '新人'           ? CAST.filter(c => c.badge === '新人')
-    : CAST.filter(c => c.specialty.includes(filter));
-
-  const filterBtns = ['全員', 'ダンス', '歌', '新人'];
-
   return (
     <div style={{ paddingTop: 80, minHeight: '100vh', background: 'transparent' }}>
       <Section>
@@ -37,32 +28,9 @@ function CastPage() {
           sub="全員があなたの「明るいパートナー」です。お気に入りのキャストを指名できます。"
         />
 
-        {/* Filter tabs */}
-        <div style={{ display:'flex', gap:8, justifyContent:'center', marginBottom:40, flexWrap:'wrap' }}>
-          {filterBtns.map(f => {
-            const active = filter === f;
-            return (
-              <button
-                key={f}
-                onClick={() => setFilter(f)}
-                style={{
-                  fontFamily:"'Noto Sans JP',sans-serif", fontSize:14, fontWeight: active ? 700 : 500,
-                  padding:'9px 24px', borderRadius:999, cursor:'pointer',
-                  border: `2px solid ${active ? '#ffffff' : 'rgba(0,56,168,0.5)'}`,
-                  background: active ? '#ffffff' : 'rgba(4,10,28,0.75)',
-                  color: active ? '#0a1628' : '#c8d8e8',
-                  backdropFilter: 'blur(6px)',
-                  transition:'all 0.2s', letterSpacing:'0.05em',
-                  boxShadow: active ? '0 2px 12px rgba(255,255,255,0.2)' : 'none',
-                }}
-              >{f}</button>
-            );
-          })}
-        </div>
-
         {/* Grid */}
         <div style={{ display:'flex', gap:20, flexWrap:'wrap', justifyContent:'center' }}>
-          {cast.map((c, i) => (
+          {CAST.map((c) => (
             <CastCard key={c.name} {...c} />
           ))}
         </div>
