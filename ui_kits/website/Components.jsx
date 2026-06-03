@@ -59,7 +59,7 @@ function Footer() {
       <div style={s.logo}>Club <span style={s.logoSpan}>Starlight</span></div>
       <p style={s.sub}>神奈川県平塚市紅谷町16-2 平塚西口会館3F<br />営業時間 20:00〜24:00（年中無休）<br />ご来店をお待ちしております 🌸</p>
       <div style={s.divider} />
-      <p style={s.copy}>© 2025 Club Starlight. All rights reserved.</p>
+      <p style={s.copy}>©2026 Starlight. All rights reserved.</p>
     </footer>
   );
 }

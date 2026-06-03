@@ -24,7 +24,7 @@ function HomePage({ onNav }) {
   const subStyle = {
     fontFamily: "'Noto Sans JP',sans-serif",
     fontSize: 15, color: '#d8e8f4', lineHeight: 1.9,
-    textAlign: 'center', maxWidth: 480, marginBottom: 40,
+    textAlign: 'center', maxWidth: 480, margin: '0 auto 40px',
     textShadow: '0 1px 8px rgba(0,0,0,0.7)',
   };
   const ctaRow = { display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' };
