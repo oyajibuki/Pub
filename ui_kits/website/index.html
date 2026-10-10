@@ -3,11 +3,47 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" type="image/x-icon" href="../../favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
-<title>Club Starlight — フィリピンパブ</title>
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+<title>Club Starlight（スターライト）| 平塚駅徒歩1分のフィリピンパブ</title>
+<meta name="description" content="神奈川県平塚市・JR平塚駅西口から徒歩1分のフィリピンパブ「Club Starlight（スターライト）」。営業時間20:00〜24:00・年中無休。明朗会計で安心してお楽しみいただけます。ご予約・お問い合わせは0463-22-7799。" />
+<link rel="canonical" href="https://starlighth.netlify.app/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Club Starlight" />
+<meta property="og:title" content="Club Starlight（スターライト）| 平塚駅徒歩1分のフィリピンパブ" />
+<meta property="og:description" content="JR平塚駅から徒歩1分。営業時間20:00〜24:00・年中無休。明朗会計のフィリピンパブです。" />
+<meta property="og:url" content="https://starlighth.netlify.app/" />
+<meta property="og:image" content="https://starlighth.netlify.app/storefront.png" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BarOrPub",
+  "name": "Club Starlight",
+  "alternateName": ["クラブスターライト", "スターライト"],
+  "description": "JR平塚駅から徒歩1分のフィリピンパブ。明朗会計・年中無休。",
+  "url": "https://starlighth.netlify.app/",
+  "image": "https://starlighth.netlify.app/storefront.png",
+  "logo": "https://starlighth.netlify.app/logo.png",
+  "telephone": "+81-463-22-7799",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "紅谷町16-2 平塚西口会館3F",
+    "addressLocality": "平塚市",
+    "addressRegion": "神奈川県",
+    "addressCountry": "JP"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "20:00",
+    "closes": "24:00"
+  }]
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
@@ -109,7 +145,22 @@
 </style>
 </head>
 <body>
-<div id="root"></div>
+<div id="root">
+  <!-- JS実行前・検索エンジン向けの静的コンテンツ（React描画時に置き換わる） -->
+  <main style="max-width:700px;margin:0 auto;padding:120px 24px;line-height:1.9">
+    <h1>Club Starlight（スターライト）— 平塚のフィリピンパブ</h1>
+    <p>神奈川県平塚市、JR平塚駅から徒歩1分。フィリピン出身のキャストが皆さまのひとときを盛り上げます。明朗会計でご安心ください。</p>
+    <h2>店舗情報</h2>
+    <ul>
+      <li>店名：Club Starlight（クラブスターライト）</li>
+      <li>営業時間：20:00〜24:00</li>
+      <li>定休日：年中無休</li>
+      <li>住所：神奈川県平塚市紅谷町16-2 平塚西口会館3F</li>
+      <li>最寄り駅：JR東海道本線「平塚駅」徒歩1分</li>
+      <li>電話番号：<a href="tel:0463227799">0463-22-7799</a></li>
+    </ul>
+  </main>
+</div>
 
 <script type="text/babel" src="Components.jsx"></script>
 <script type="text/babel" src="HomePage.jsx"></script>
