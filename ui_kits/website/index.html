@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" type="image/x-icon" href="./favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
@@ -44,291 +44,265 @@
   }]
 }
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Noto+Sans+JP:wght@400;500;700;900&family=Yusei+Magic&display=swap" rel="stylesheet" />
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    background-color: #0a1628;
-    background-image: url('./bg-pub.png');
-    background-size: cover;
-    background-position: center top;
-    background-attachment: fixed;
-    color: #f0eee8;
-    font-family: 'Noto Sans JP', sans-serif;
-    min-height: 100vh;
-  }
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #0a1628; }
-  ::-webkit-scrollbar-thumb { background: rgba(0,56,168,0.4); border-radius: 3px; }
+  /* 今のサイトの色（紺・国旗の赤／黄／青）はそのまま。ぼかし・半透明カード・AI背景画像をやめる */
+  :root { --navy:#0a1628; --navy2:#0f2140; --line:#1f3560; --ink:#f0eee8; --dim:#9fb2c8;
+          --red:#CE1126; --yellow:#FCD116; --blue:#0038A8; --sky:#7eb8f7; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; scroll-padding-top:64px; }
+  body { background:var(--navy); color:var(--ink); font-family:'Noto Sans JP', sans-serif; }
+  a { color:inherit; }
 
-  /* ── Nav ── */
-  .site-nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center;
-    height: 64px; padding: 0 20px; gap: 12px;
-    background: rgba(8,16,40,0.90);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(0,56,168,0.45);
-  }
-  .nav-logo { height: 44px; cursor: pointer; object-fit: contain; flex-shrink: 0; }
-  .nav-links {
-    display: flex; gap: 0; flex: 1;
-    overflow-x: auto; -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .nav-links::-webkit-scrollbar { display: none; }
-  .nav-link {
-    font-size: 13px; color: #c8d8e8; letter-spacing: 0.05em; cursor: pointer;
-    padding: 4px 16px; white-space: nowrap; border-bottom: 2px solid transparent;
-    transition: all 0.2s; font-family: 'Noto Sans JP', sans-serif;
-    flex-shrink: 0;
-  }
-  .nav-link.active { color: #ffffff; border-bottom-color: #ffffff; }
-  .nav-link:hover { color: #ffffff; }
-  .nav-cta {
-    flex-shrink: 0; background: #CE1126; color: #ffffff;
-    font-size: 13px; font-weight: 700; padding: 8px 18px;
-    border-radius: 6px; cursor: pointer; border: none;
-    letter-spacing: 0.05em; font-family: 'Noto Sans JP', sans-serif;
-    white-space: nowrap;
-  }
-  .nav-cta:hover { background: #e8364a; }
+  /* ── Nav（今と同じ構成） ── */
+  .nav { position:sticky; top:0; z-index:10; height:64px; display:flex; align-items:center; gap:12px; padding:0 16px;
+    background:var(--navy); border-bottom:1px solid var(--line); }
+  .nav img { height:40px; }
+  .nav .links { display:flex; flex:1; overflow-x:auto; scrollbar-width:none; }
+  .nav .links a { font-size:13px; color:var(--dim); padding:6px 14px; text-decoration:none; white-space:nowrap; }
+  .nav .links a:hover { color:#fff; }
+  .nav .cta { background:var(--red); color:#fff; text-decoration:none; font-size:13px; font-weight:700; padding:8px 14px; border-radius:4px; white-space:nowrap; }
 
-  /* ── Section ── */
-  .section-inner { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+  /* ── Hero：「いらっしゃいませー！」の声を主役に ── */
+  .herobg { position:relative; overflow:hidden; }
+  .herobg::before { content:''; position:absolute; inset:-60px; background:url('./bg-glow.jpg') center/cover;
+    filter:blur(28px) saturate(1.3); opacity:.32; }
+  .herobg::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg, transparent 55%, var(--navy)); }
+  .herobg > * { position:relative; z-index:1; }
+  .hero { max-width:1080px; margin:0 auto; padding:56px 16px 72px; display:grid; grid-template-columns:1.15fr 1fr; gap:40px; align-items:center; }
+  .bubble { position:relative; display:inline-block; background:var(--yellow); color:var(--navy); border-radius:28px;
+    padding:18px 28px 22px; font-family:'Yusei Magic', sans-serif; font-size:clamp(28px,4.6vw,54px); line-height:1.15; white-space:nowrap;
+    transform:rotate(-3deg); animation:pop .6s ease-out both; }
+  .bubble::after { content:''; position:absolute; left:48px; bottom:-22px; border:14px solid transparent; border-top:22px solid var(--yellow); border-bottom:0; transform:skewX(-20deg); }
+  .bubble .wave { display:inline-block; animation:wave 1.4s ease-in-out .6s 2; transform-origin:70% 70%; }
+  @keyframes pop { from{ transform:rotate(-3deg) scale(.85); opacity:0 } to{ transform:rotate(-3deg) scale(1); opacity:1 } }
+  @keyframes wave { 0%,100%{ transform:rotate(0) } 25%{ transform:rotate(18deg) } 75%{ transform:rotate(-8deg) } }
+  @media (prefers-reduced-motion:reduce){ .bubble,.bubble .wave{ animation:none } }
+  .mabuhay { display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--dim); margin-bottom:22px; }
+  .mabuhay svg { width:30px; height:15px; border-radius:2px; box-shadow:0 0 0 1px rgba(255,255,255,.25); }
+  .mabuhay b { color:#fff; font-weight:700; }
+  .hero h1 { font-family:'Shippori Mincho', serif; font-weight:800; font-size:clamp(26px,3.6vw,40px); line-height:1.45; margin-top:44px; }
+  .hero h1 em { font-style:normal; color:var(--yellow); }
+  .hero p.lead { margin-top:18px; color:var(--dim); line-height:2; font-size:15px; max-width:30em; }
+  .hero .btns { display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; }
+  .btn { display:inline-block; padding:14px 22px; border-radius:6px; font-weight:700; font-size:15px; text-decoration:none; }
+  .btn.red { background:var(--red); color:#fff; }
+  .btn.line { border:1.5px solid var(--sky); color:var(--sky); }
 
-  /* ── Dance schedule ── */
-  .sched-row {
-    display: flex; align-items: center; gap: 20px;
-    padding: 16px 0;
-    border-bottom: 1px solid rgba(0,56,168,0.25);
-  }
-  .sched-row:last-child { border-bottom: none; }
-  .sched-dot { flex-shrink: 0; width: 10px; height: 10px; border-radius: 50%; }
-  .sched-time {
-    font-family: 'Shippori Mincho', serif; font-size: 15px; color: #ffffff;
-    min-width: 148px; flex-shrink: 0;
-  }
-  .sched-event { flex: 1; }
-  .sched-event-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
-  .sched-event-name { font-size: 14px; color: #f0eee8; font-family: 'Noto Sans JP', sans-serif; font-weight: 500; }
-  .sched-performers { font-size: 12px; color: #8aa4be; font-family: 'Noto Sans JP', sans-serif; }
+  /* 駅前すぐ、を図で見せる */
+  .map { background:var(--navy2); border:1px solid var(--line); border-radius:12px; padding:20px; }
+  .map h2 { font-size:13px; color:var(--dim); font-weight:500; margin-bottom:10px; }
+  .map svg { width:100%; height:auto; display:block; }
+  .map .cap { display:flex; justify-content:space-between; align-items:baseline; margin-top:12px; }
+  .map .cap b { font-size:28px; font-weight:900; color:var(--yellow); }
+  .map .cap span { font-size:12px; color:var(--dim); }
 
-  /* ── Mobile ── */
-  @media (max-width: 600px) {
-    .section-inner { padding: 60px 16px; }
+  /* ── ひとこと情報バー（今のstats行を、箱ではなく帯で） ── */
+  .strip { border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--navy2); }
+  .strip ul { max-width:1080px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); list-style:none; }
+  .strip li { padding:20px 16px; border-right:1px solid var(--line); }
+  .strip li:last-child { border-right:0; }
+  .strip b { display:block; font-size:22px; font-weight:900; }
+  .strip span { font-size:12px; color:var(--dim); }
+  .strip .now { color:var(--yellow); }
 
-    /* Dance schedule — stack time above event */
-    .sched-row { flex-wrap: wrap; gap: 8px; padding: 14px 0; align-items: flex-start; }
-    .sched-time-row { display: flex; align-items: center; gap: 10px; width: 100%; }
-    .sched-time { min-width: unset; font-size: 13px; }
-    .sched-event { width: 100%; padding-left: 20px; }
-    .sched-event-name { font-size: 14px; }
+  /* ── セクション共通 ── */
+  section.s { max-width:1080px; margin:0 auto; padding:80px 16px 0; }
+  .s h2 { font-family:'Shippori Mincho', serif; font-weight:800; font-size:clamp(26px,4vw,36px); display:flex; align-items:baseline; gap:14px; margin-bottom:28px; }
+  .s h2::before { content:''; width:10px; height:10px; background:var(--red); border-radius:50%; flex:none; transform:translateY(-6px); }
 
-    /* Hero */
-    .hero-h1 { font-size: 40px !important; }
-    .hero-sub { font-size: 13px !important; }
-    .stats-row { gap: 20px !important; padding: 20px 16px !important; }
+  /* 3つの特徴：アイコン＋決まり文句をやめて、具体的な話に */
+  .why { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid var(--line); }
+  .why div { padding:28px 24px; border-right:1px solid var(--line); text-align:center; }
+  .why div:last-child { border:0; }
+  .why .k { font-size:28px; line-height:1; letter-spacing:.04em; color:var(--red); font-weight:900; }
+  .why h3 { font-size:19px; margin:8px 0 10px; }
+  .why p { font-size:14px; color:var(--dim); line-height:1.9; }
 
-    /* Section heading */
-    .section-heading { padding: 20px 16px !important; }
-    .section-heading h2 { font-size: 26px !important; }
+  /* 料金：今の内容のまま、表として素直に */
+  .price { display:grid; grid-template-columns:1fr 1.2fr; border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  .price .main { background:var(--red); padding:32px; }
+  .price .main p { font-size:14px; font-weight:700; }
+  .price .main .y { font-size:clamp(56px,9vw,84px); font-weight:900; line-height:1.05; letter-spacing:-.02em; }
+  .price .main .y small { font-size:16px; font-weight:500; margin-left:6px; }
+  .price .main .sub { font-size:13px; margin-top:10px; opacity:.9; }
+  .price ul { list-style:none; padding:12px 28px; background:var(--navy2); }
+  .price li { display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--line); font-size:15px; }
+  .price li:last-child { border:0; }
+  .price li span:last-child { font-weight:700; }
+  .price li .free { color:var(--yellow); }
+  .note { font-size:12px; color:var(--dim); margin-top:12px; line-height:1.8; }
 
-    /* Nav logo */
-    .nav-logo { height: 36px; }
-    .nav-link { padding: 4px 10px; font-size: 12px; }
+  /* ダンスタイム：今の時間割を、横のタイムラインに */
+  .tl { position:relative; display:grid; grid-template-columns:repeat(8,1fr); }
+  .tl::before { content:''; position:absolute; left:0; right:0; top:22px; height:2px; background:var(--line); }
+  .tl div { position:relative; text-align:center; padding-top:44px; font-size:12px; color:var(--dim); }
+  .tl div::before { content:''; position:absolute; top:16px; left:50%; width:14px; height:14px; margin-left:-7px; border-radius:50%; background:var(--navy); border:2px solid var(--line); }
+  .tl div b { display:block; font-size:16px; color:var(--ink); margin-bottom:4px; }
+  .tl div.show::before { background:var(--red); border-color:var(--red); box-shadow:0 0 0 5px rgba(206,17,38,.25); }
+  .tl div.show { color:#ff8a96; font-weight:700; }
+  .tl div.cur b { color:var(--yellow); }
+
+  /* アクセス */
+  .acc { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+  .acc dl { display:grid; grid-template-columns:7em 1fr; border-top:1px solid var(--line); }
+  .acc dt, .acc dd { padding:14px 0; border-bottom:1px solid var(--line); font-size:15px; }
+  .acc dt { color:var(--dim); font-size:13px; }
+  .tel { background:var(--navy2); border:1px solid var(--line); border-radius:12px; padding:28px; display:flex; flex-direction:column; justify-content:center; gap:10px; }
+  .tel p { color:var(--dim); font-size:14px; line-height:1.8; }
+  .tel a { font-size:clamp(30px,5vw,40px); font-weight:900; text-decoration:none; color:#fff; }
+  .tel a::before { content:'☎ '; color:var(--yellow); }
+
+  footer { margin-top:96px; border-top:1px solid var(--line); padding:32px 16px; text-align:center; font-size:12px; color:var(--dim); line-height:2; }
+  .flag { height:4px; background:linear-gradient(90deg, var(--blue) 0 33%, var(--yellow) 33% 66%, var(--red) 66%); }
+
+  @media (max-width:760px){
+    .hero, .price, .acc { grid-template-columns:1fr; }
+    .hero { padding-top:40px; gap:32px; }
+    .strip ul { grid-template-columns:1fr 1fr; } .strip li:nth-child(2){ border-right:0; } .strip li:nth-child(-n+2){ border-bottom:1px solid var(--line); }
+    .why { grid-template-columns:1fr; } .why div { border-right:0; border-bottom:1px solid var(--line); }
+    .tl { grid-template-columns:1fr; } .tl::before { left:22px; right:auto; top:0; bottom:0; width:2px; height:auto; }
+    .tl div { text-align:left; padding:10px 0 10px 52px; } .tl div::before { top:50%; left:22px; margin-top:-7px; }
+    .tl div b { display:inline; margin-right:10px; }
   }
 </style>
 </head>
 <body>
-<div id="root">
-  <!-- JS実行前・検索エンジン向けの静的コンテンツ（React描画時に置き換わる） -->
-  <main style="max-width:700px;margin:0 auto;padding:120px 24px;line-height:1.9">
-    <h1>Club Starlight（スターライト）— 平塚のフィリピンパブ</h1>
-    <p>神奈川県平塚市、JR平塚駅から徒歩1分。フィリピン出身のキャストが皆さまのひとときを盛り上げます。明朗会計でご安心ください。</p>
-    <h2>店舗情報</h2>
-    <ul>
-      <li>店名：Club Starlight（クラブスターライト）</li>
-      <li>営業時間：20:00〜24:00</li>
-      <li>定休日：年中無休</li>
-      <li>住所：神奈川県平塚市紅谷町16-2 平塚西口会館3F</li>
-      <li>最寄り駅：JR東海道本線「平塚駅」徒歩1分</li>
-      <li>電話番号：<a href="tel:0463227799">0463-22-7799</a></li>
-    </ul>
-  </main>
-</div>
+  <nav class="nav">
+    <img src="./logo.png" alt="Club Starlight" />
+    <div class="links"><a href="#top">ホーム</a><a href="#price">料金</a><a href="#dance">ダンスタイム</a><a href="#access">アクセス</a></div>
+    <a class="cta" href="tel:0463227799">ご予約</a>
+  </nav>
 
-<script type="text/babel" src="Components.jsx"></script>
-<script type="text/babel" src="HomePage.jsx"></script>
-<script type="text/babel" src="CastPage.jsx"></script>
-<script type="text/babel" src="PricingPage.jsx"></script>
-<script type="text/babel" src="DancePage.jsx"></script>
-<script type="text/babel" src="AccessPage.jsx"></script>
-
-<script type="text/babel">
-const { useState, useEffect } = React;
-
-const PAGES = {
-  home:    () => <HomePage    onNav={setPage} />,
-  cast:    () => <CastPage    />,
-  pricing: () => <PricingPage />,
-  dance:   () => <DancePage   />,
-  access:  () => <AccessPage  />,
-};
-
-let setPage;
-
-function App() {
-  const [page, _setPage] = useState(() => {
-    return localStorage.getItem('clubrosa_page') || 'home';
-  });
-  setPage = (p) => {
-    _setPage(p);
-    localStorage.setItem('clubrosa_page', p);
-    window.scrollTo({ top: 0 });
-  };
-
-  const PageComponent = PAGES[page] || PAGES.home;
-
-  return (
+  <div class="herobg">
+  <header class="hero" id="top">
     <div>
-      <Nav page={page} onNav={setPage} />
-      <main>
-        <PageComponent onNav={setPage} />
-      </main>
-      <GoldDivider />
-      <Footer />
+      <div class="mabuhay"><svg viewBox="0 0 180 90" aria-hidden="true"><rect width="180" height="45" fill="#0038A8"/><rect y="45" width="180" height="45" fill="#CE1126"/><path d="M0 0 L78 45 L0 90Z" fill="#fff"/><circle cx="26" cy="45" r="9" fill="#FCD116"/><circle cx="8" cy="9" r="4" fill="#FCD116"/><circle cx="8" cy="81" r="4" fill="#FCD116"/><circle cx="66" cy="45" r="4" fill="#FCD116"/></svg><span><b>Mabuhay!</b>（フィリピン語で「ようこそ」）</span></div><br>
+      <div class="bubble">いらっしゃいませー！<span class="wave">👋</span></div>
+      <h1>平塚駅西口、<em>駅前すぐ。</em><br>扉を開けたら、この声から。</h1>
+      <p class="lead">フィリピン出身のスタッフが、元気な「いらっしゃいませー！」でお迎えします。お仕事帰りに一杯だけ、もちろん大歓迎。料金は1時間4,000円（税別）、ショーは毎晩無料です。</p>
+      <div class="btns">
+        <a class="btn red" href="tel:0463227799">電話で席を確認</a>
+        <a class="btn line" href="#price">料金を見る</a>
+      </div>
     </div>
-  );
+
+    <div class="map" aria-label="平塚駅西口からの道のりイメージ">
+      <h2>西口を出て、ほぼ正面。なか卯の上</h2>
+      <svg viewBox="0 0 320 340" role="img" aria-label="平塚駅西口を出て、ほぼ正面やや左のビル（1Fなか卯）の3F">
+        <defs><clipPath id="ph"><rect x="62" y="22" width="110" height="168" rx="6"/></clipPath></defs>
+        <!-- ビル（外観写真）：西口のほぼ正面、やや左 -->
+        <text x="117" y="14" text-anchor="middle" fill="#9fb2c8" font-size="11" font-family="Noto Sans JP">平塚西口会館</text>
+        <image href="./storefront.png" x="62" y="22" width="110" height="168" preserveAspectRatio="xMidYMid slice" clip-path="url(#ph)"/>
+        <rect x="62" y="22" width="110" height="168" rx="6" fill="none" stroke="#7eb8f7" stroke-width="2"/>
+        <!-- 3F の看板を指す -->
+        <line x1="196" y1="82" x2="128" y2="92" stroke="#CE1126" stroke-width="2"/>
+        <circle cx="128" cy="92" r="5" fill="none" stroke="#CE1126" stroke-width="2.5"/>
+        <rect x="196" y="70" width="80" height="24" rx="12" fill="#CE1126"/>
+        <text x="236" y="87" text-anchor="middle" fill="#fff" font-size="12" font-weight="900" font-family="Noto Sans JP">3F ★ ここ</text>
+        <text x="236" y="112" text-anchor="middle" fill="#9fb2c8" font-size="10" font-family="Noto Sans JP">1Fは「なか卯」</text>
+        <!-- 道 -->
+        <rect x="0" y="206" width="320" height="22" fill="#132a4d"/>
+        <!-- 駅（下） -->
+        <rect x="125" y="250" width="70" height="16" fill="#FCD116"/>
+        <text x="160" y="262" text-anchor="middle" fill="#0a1628" font-size="11" font-weight="900" font-family="Noto Sans JP">西口</text>
+        <rect x="95" y="266" width="130" height="44" rx="6" fill="#0038A8"/>
+        <text x="160" y="293" text-anchor="middle" fill="#fff" font-size="15" font-weight="700" font-family="Noto Sans JP">JR 平塚駅</text>
+        <!-- 線路 -->
+        <rect x="0" y="318" width="320" height="10" fill="#1f3560"/>
+        <g stroke="#0a1628" stroke-width="2">
+          <line x1="20" y1="318" x2="20" y2="328"/><line x1="60" y1="318" x2="60" y2="328"/><line x1="100" y1="318" x2="100" y2="328"/><line x1="140" y1="318" x2="140" y2="328"/><line x1="180" y1="318" x2="180" y2="328"/><line x1="220" y1="318" x2="220" y2="328"/><line x1="260" y1="318" x2="260" y2="328"/><line x1="300" y1="318" x2="300" y2="328"/>
+        </g>
+        <!-- 道のり（下から上へ、ほぼまっすぐ） -->
+        <path d="M160 246 C160 224, 132 222, 130 198" fill="none" stroke="#FCD116" stroke-width="3" stroke-dasharray="6 6">
+        </path>
+        <path d="M122 206 L130 196 L138 206" fill="none" stroke="#FCD116" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="cap"><b>徒歩1分</b><span>※ 位置関係のイメージ図です</span></div>
+    </div>
+  </header>
+  </div>
+
+  <div class="strip">
+    <ul>
+      <li><b id="openState">20:00〜24:00</b><span>営業時間</span></li>
+      <li><b>年中無休</b><span>定休日なし</span></li>
+      <li><b class="now" id="nextShow">ショー 毎晩3回</b><span id="nextSub">20:30 / 21:30 / 23:00</span></li>
+      <li><b>¥4,000</b><span>1時間セット（税別）</span></li>
+    </ul>
+  </div>
+
+  <section class="s">
+    <h2>はじめての方へ</h2>
+    <div class="why">
+      <div><p class="k">01</p><h3>駅から迷わない</h3><p>平塚駅の西口を出てすぐ目の前のビル、平塚西口会館の3Fです。帰りの電車の時間も気にしやすい距離。</p></div>
+      <div><p class="k">02</p><h3>お会計が先にわかる</h3><p>1時間4,000円、延長も同じ。追加になるのは指名・ドリンク・カラオケだけで、全部この下に書いてあります。</p></div>
+      <div><p class="k">03</p><h3>ショーは見るだけでOK</h3><p>毎晩3回、全員で踊ります。飲んでいるだけで始まるので、タイミングを合わせて来るのもおすすめ。</p></div>
+    </div>
+  </section>
+
+  <section class="s" id="price">
+    <h2>料金</h2>
+    <div class="price">
+      <div class="main">
+        <p>セット料金（1時間）</p>
+        <div class="y">¥4,000<small>税別</small></div>
+        <p class="sub">延長も1時間ごと ¥4,000</p>
+      </div>
+      <ul>
+        <li><span>指名料（1名あたり）</span><span>¥2,000</span></li>
+        <li><span>レディースドリンク</span><span>¥1,000</span></li>
+        <li><span>カラオケ（1曲・現金のみ）</span><span>¥200</span></li>
+        <li><span>ショータイム</span><span class="free">無料</span></li>
+        <li><span>ボトルキープ</span><span>OK</span></li>
+      </ul>
+    </div>
+    <p class="note">※ 料金はすべて税別です。ご不明な点はお気軽にお電話ください。</p>
+  </section>
+
+  <section class="s" id="dance">
+    <h2>ダンスタイム</h2>
+    <div class="tl" id="tl"></div>
+    <p class="note">※ スケジュールは予告なく変更になる場合があります。</p>
+  </section>
+
+  <section class="s" id="access">
+    <h2>アクセス</h2>
+    <div class="acc">
+      <dl>
+        <dt>住所</dt><dd>神奈川県平塚市紅谷町16-2<br>平塚西口会館 3F</dd>
+        <dt>最寄り駅</dt><dd>JR東海道本線「平塚駅」西口 駅前すぐ（徒歩1分）</dd>
+        <dt>営業時間</dt><dd>20:00〜24:00</dd>
+        <dt>定休日</dt><dd>年中無休</dd>
+      </dl>
+      <div class="tel">
+        <p>「今から2人、入れますか？」<br>そんな電話も大歓迎です。</p>
+        <a href="tel:0463227799">0463-22-7799</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div style="width:48px;margin:0 auto 16px"><svg style="width:48px;height:24px;display:block" viewBox="0 0 180 90" aria-hidden="true"><rect width="180" height="45" fill="#0038A8"/><rect y="45" width="180" height="45" fill="#CE1126"/><path d="M0 0 L78 45 L0 90Z" fill="#fff"/><circle cx="26" cy="45" r="9" fill="#FCD116"/><circle cx="8" cy="9" r="4" fill="#FCD116"/><circle cx="8" cy="81" r="4" fill="#FCD116"/><circle cx="66" cy="45" r="4" fill="#FCD116"/></svg></div>
+    Club Starlight ／ 神奈川県平塚市紅谷町16-2 平塚西口会館3F<br>© Club Starlight
+  </footer>
+
+<script>
+const TL = [['20:00','オープン',0],['20:30','ショー①',1],['21:00','フリー',0],['21:30','ショー②',1],['22:00','フリー',0],['23:00','ショー③',1],['23:30','フリー',0],['24:00','クローズ',0]];
+const m = t => { const [h,mi] = t.split(':').map(Number); return h*60+mi; };
+function tick(){
+  const d = new Date(), now = d.getHours()*60 + d.getMinutes(), open = now >= 1200;
+  let cur = -1; if (open) TL.forEach((r,i) => { if (m(r[0]) <= now) cur = i; });
+  document.getElementById('tl').innerHTML = TL.map((r,i) =>
+    `<div class="${r[2]?'show':''} ${i===cur?'cur':''}"><b>${r[0]}</b>${r[1]}${i===cur?'（いま）':''}</div>`).join('');
+  const nx = TL.find(r => r[2] && m(r[0]) > now);
+  document.getElementById('openState').textContent = open ? '営業中' : '20:00〜24:00';
+  if (open && nx) {
+    document.getElementById('nextShow').textContent = `次のショーまで${m(nx[0]) - now}分`;
+    document.getElementById('nextSub').textContent = `${nx[1]} ${nx[0]}〜`;
+  }
 }
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
-</script>
-
-<!-- Tweaks panel -->
-<script type="text/babel">
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "storeName": "Club Starlight",
-  "tagline": "今夜も笑顔でお迎えします",
-  "goldColor": "#FCD116",
-  "roseColor": "#e8364a",
-  "bgColor": "#08101e"
-}/*EDITMODE-END*/;
-
-(function() {
-  let tweaks = { ...TWEAK_DEFAULTS };
-  let panelVisible = false;
-
-  function applyTweaks(t) {
-    document.documentElement.style.setProperty('--tw-gold', t.goldColor);
-    document.documentElement.style.setProperty('--tw-rose', t.roseColor);
-    document.documentElement.style.setProperty('--tw-bg', t.bgColor);
-  }
-
-  function buildPanel() {
-    const panel = document.createElement('div');
-    panel.id = 'tweaks-panel';
-    panel.style.cssText = `
-      position:fixed;bottom:24px;right:24px;z-index:9999;
-      background:#1e1230;border:1px solid rgba(212,160,48,0.4);border-radius:12px;
-      padding:20px;min-width:220px;box-shadow:0 8px 40px rgba(0,0,0,0.6);
-      font-family:'Noto Sans JP',sans-serif;display:none;
-    `;
-    panel.innerHTML = `
-      <div style="font-size:12px;font-weight:700;color:#d4a030;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px">Tweaks</div>
-      <label style="display:block;margin-bottom:12px">
-        <div style="font-size:11px;color:#8a7490;margin-bottom:4px">店名</div>
-        <input id="tw-storeName" type="text" value="${tweaks.storeName}"
-          style="width:100%;background:#2a1a40;border:1px solid rgba(212,160,48,0.25);color:#f5ede0;padding:6px 10px;border-radius:6px;font-size:12px;outline:none;font-family:inherit" />
-      </label>
-      <label style="display:block;margin-bottom:12px">
-        <div style="font-size:11px;color:#8a7490;margin-bottom:4px">キャッチコピー</div>
-        <input id="tw-tagline" type="text" value="${tweaks.tagline}"
-          style="width:100%;background:#2a1a40;border:1px solid rgba(212,160,48,0.25);color:#f5ede0;padding:6px 10px;border-radius:6px;font-size:12px;outline:none;font-family:inherit" />
-      </label>
-      <label style="display:block;margin-bottom:12px">
-        <div style="font-size:11px;color:#8a7490;margin-bottom:4px">アクセントカラー (Gold)</div>
-        <div style="display:flex;gap:8px;align-items:center">
-          <input id="tw-goldColor" type="color" value="${tweaks.goldColor}" style="width:36px;height:28px;border-radius:4px;border:none;cursor:pointer" />
-          <span id="tw-goldVal" style="font-size:11px;color:#8a7490">${tweaks.goldColor}</span>
-        </div>
-      </label>
-      <label style="display:block;margin-bottom:12px">
-        <div style="font-size:11px;color:#8a7490;margin-bottom:4px">アクセントカラー (Rose)</div>
-        <div style="display:flex;gap:8px;align-items:center">
-          <input id="tw-roseColor" type="color" value="${tweaks.roseColor}" style="width:36px;height:28px;border-radius:4px;border:none;cursor:pointer" />
-          <span id="tw-roseVal" style="font-size:11px;color:#8a7490">${tweaks.roseColor}</span>
-        </div>
-      </label>
-      <label style="display:block;margin-bottom:0">
-        <div style="font-size:11px;color:#8a7490;margin-bottom:4px">背景色</div>
-        <div style="display:flex;gap:8px;align-items:center">
-          <input id="tw-bgColor" type="color" value="${tweaks.bgColor}" style="width:36px;height:28px;border-radius:4px;border:none;cursor:pointer" />
-          <span id="tw-bgVal" style="font-size:11px;color:#8a7490">${tweaks.bgColor}</span>
-        </div>
-      </label>
-    `;
-    document.body.appendChild(panel);
-
-    const post = (edits) => window.parent.postMessage({ type:'__edit_mode_set_keys', edits }, '*');
-
-    panel.querySelector('#tw-storeName').addEventListener('input', e => {
-      tweaks.storeName = e.target.value;
-      post({ storeName: tweaks.storeName });
-    });
-    panel.querySelector('#tw-tagline').addEventListener('input', e => {
-      tweaks.tagline = e.target.value;
-      post({ tagline: tweaks.tagline });
-    });
-    panel.querySelector('#tw-goldColor').addEventListener('input', e => {
-      tweaks.goldColor = e.target.value;
-      panel.querySelector('#tw-goldVal').textContent = e.target.value;
-      document.documentElement.style.setProperty('--tw-gold', tweaks.goldColor);
-      post({ goldColor: tweaks.goldColor });
-    });
-    panel.querySelector('#tw-roseColor').addEventListener('input', e => {
-      tweaks.roseColor = e.target.value;
-      panel.querySelector('#tw-roseVal').textContent = e.target.value;
-      document.documentElement.style.setProperty('--tw-rose', tweaks.roseColor);
-      post({ roseColor: tweaks.roseColor });
-    });
-    panel.querySelector('#tw-bgColor').addEventListener('input', e => {
-      tweaks.bgColor = e.target.value;
-      panel.querySelector('#tw-bgVal').textContent = e.target.value;
-      document.body.style.background = tweaks.bgColor;
-      post({ bgColor: tweaks.bgColor });
-    });
-  }
-
-  window.addEventListener('message', (e) => {
-    if (e.data?.type === '__activate_edit_mode') {
-      panelVisible = true;
-      const p = document.getElementById('tweaks-panel');
-      if (p) p.style.display = 'block';
-    }
-    if (e.data?.type === '__deactivate_edit_mode') {
-      panelVisible = false;
-      const p = document.getElementById('tweaks-panel');
-      if (p) p.style.display = 'none';
-    }
-  });
-
-  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
-
-  document.addEventListener('DOMContentLoaded', () => {
-    buildPanel();
-    applyTweaks(tweaks);
-  });
-  if (document.readyState !== 'loading') {
-    buildPanel();
-    applyTweaks(tweaks);
-  }
-})();
+tick(); setInterval(tick, 30000);
 </script>
 <script>
 // アクセスカウンター（ページ表示時に1回だけ送信）

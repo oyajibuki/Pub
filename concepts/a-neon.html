@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>案A ネオン看板 — Club Starlight</title>
+<link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&family=Dela+Gothic+One&family=M+PLUS+1+Code:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root { --bg:#07060a; --ink:#f4efe6; --dim:#8c8590; --pink:#ff3d8b; --cyan:#36f0ff; --yellow:#ffd23d; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--ink); font-family:'M PLUS 1 Code', monospace; }
+  a { color:inherit; }
+
+  /* 看板：ページを開いた瞬間に「店の外に立っている」感じ */
+  .sign { min-height:92vh; display:grid; place-items:center; position:relative; overflow:hidden;
+    background: radial-gradient(ellipse at 50% 60%, #1a0b1e 0%, var(--bg) 70%); }
+  .brick { position:absolute; inset:0; opacity:.07;
+    background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg,#fff 1px, transparent 1px);
+    background-size: 64px 28px, 128px 56px; }
+  .neon { text-align:center; position:relative; }
+  .neon .club { font-family:'Tilt Neon'; font-size:clamp(20px,4vw,34px); color:var(--cyan); letter-spacing:.4em;
+    text-shadow:0 0 4px #fff, 0 0 12px var(--cyan), 0 0 30px var(--cyan); }
+  .neon .name { font-family:'Tilt Neon'; font-size:clamp(64px,15vw,190px); line-height:1; color:#fff;
+    text-shadow:0 0 6px #fff, 0 0 18px var(--pink), 0 0 44px var(--pink), 0 0 90px var(--pink);
+    animation: flick 6s infinite; }
+  .neon .name .bad { animation: bad 3.7s infinite; }
+  @keyframes flick { 0%,92%,100%{opacity:1} 93%{opacity:.6} 94%{opacity:1} 96%{opacity:.75} }
+  @keyframes bad { 0%,40%,44%,100%{opacity:1} 41%,43%{opacity:.15} }
+  .neon .jp { font-family:'Dela Gothic One'; font-size:clamp(16px,3vw,24px); color:var(--yellow); margin-top:18px;
+    text-shadow:0 0 10px rgba(255,210,61,.6); }
+  .open { position:absolute; top:24px; right:24px; font-family:'Tilt Neon'; font-size:22px; color:#5dff8a;
+    border:2px solid #5dff8a; border-radius:8px; padding:4px 14px;
+    box-shadow:0 0 12px #5dff8a, inset 0 0 12px rgba(93,255,138,.4); text-shadow:0 0 8px #5dff8a; }
+  .open.closed { color:#555; border-color:#333; box-shadow:none; text-shadow:none; }
+
+  /* 今夜の情報：一番知りたいことを最初に */
+  .tonight { max-width:980px; margin:-60px auto 0; position:relative; padding:0 16px; display:grid;
+    grid-template-columns: 1.3fr 1fr; gap:16px; }
+  .board { background:#000; border:1px solid #2a2530; padding:24px; }
+  .board h2 { font-size:12px; color:var(--dim); letter-spacing:.2em; margin-bottom:14px; font-weight:400; }
+  .next { font-family:'Dela Gothic One'; font-size:clamp(24px,3.6vw,34px); color:var(--yellow); }
+  .next small { display:block; font-family:'M PLUS 1 Code'; font-size:13px; color:var(--ink); margin-top:6px; }
+  .rows { margin-top:18px; font-size:14px; }
+  .rows div { display:flex; justify-content:space-between; padding:8px 0; border-top:1px dashed #2a2530; color:var(--dim); }
+  .rows div.show { color:var(--ink); }
+  .rows div.show span:last-child { color:var(--pink); }
+  .rows div.now { background:#1a0b1e; color:#fff; }
+  .call { background:var(--pink); color:#fff; display:flex; flex-direction:column; justify-content:space-between; padding:24px; text-decoration:none; }
+  .call .l { font-size:13px; }
+  .call .tel { font-family:'Dela Gothic One'; font-size:clamp(30px,5vw,42px); line-height:1.1; }
+  .call .s { font-size:12px; opacity:.85; }
+
+  /* 料金：レシート風。明朗会計を「見せる」 */
+  .money { max-width:980px; margin:80px auto; padding:0 16px; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+  .money h3 { font-family:'Dela Gothic One'; font-size:clamp(28px,5vw,48px); line-height:1.25; }
+  .money h3 em { font-style:normal; color:var(--cyan); }
+  .money p { color:var(--dim); line-height:1.9; margin-top:16px; font-size:14px; }
+  .receipt { background:#f4efe6; color:#1a1a1a; padding:28px 24px; font-size:14px; transform:rotate(1.5deg);
+    -webkit-mask: radial-gradient(circle 6px at 50% 100%, transparent 98%, #000) 0 0/16px 100%; mask: radial-gradient(circle 6px at 50% 100%, transparent 98%, #000) 0 0/16px 100%; }
+  .receipt .t { text-align:center; font-weight:700; letter-spacing:.3em; margin-bottom:14px; }
+  .receipt div.r { display:flex; justify-content:space-between; padding:5px 0; }
+  .receipt hr { border:0; border-top:1px dashed #999; margin:10px 0; }
+  .receipt .sum { font-weight:700; font-size:18px; }
+  .receipt .ex { font-size:11px; color:#666; margin-top:12px; line-height:1.7; }
+
+  .photo { max-width:980px; margin:0 auto 80px; padding:0 16px; }
+  .ph { aspect-ratio: 16/7; border:2px dashed #3a3440; display:grid; place-items:center; color:var(--dim); font-size:13px; text-align:center; line-height:1.8; }
+
+  footer { border-top:1px solid #2a2530; padding:40px 16px; text-align:center; color:var(--dim); font-size:13px; line-height:2; }
+  @media (max-width:720px){ .tonight,.money{ grid-template-columns:1fr; } .tonight{ margin-top:-40px; } }
+</style>
+</head>
+<body>
+  <section class="sign">
+    <div class="brick"></div>
+    <div class="open" id="open">OPEN</div>
+    <div class="neon">
+      <div class="club">CLUB</div>
+      <div class="name">Star<span class="bad">l</span>ight</div>
+      <div class="jp">平塚駅 西口 徒歩1分 ／ 3F</div>
+    </div>
+  </section>
+
+  <section class="tonight">
+    <div class="board">
+      <h2 id="today">TONIGHT</h2>
+      <div class="next" id="next">次のショーまで —</div>
+      <div class="rows" id="rows"></div>
+    </div>
+    <a class="call" href="tel:0463227799">
+      <span class="l">席の空き、いま聞いてみる →</span>
+      <span class="tel">0463<br>22-7799</span>
+      <span class="s">20:00〜24:00 ／ 年中無休</span>
+    </a>
+  </section>
+
+  <section class="money">
+    <div>
+      <h3>はじめてでも、<br><em>お会計が読める店。</em></h3>
+      <p>セット1時間 ¥4,000。延長も同じ。ショーはタダ。<br>「いくらになるか分からない」をなくしたくて、全部ここに書いています。</p>
+    </div>
+    <div class="receipt">
+      <div class="t">STARLIGHT</div>
+      <div class="r"><span>セット 60分</span><span>¥4,000</span></div>
+      <div class="r"><span>延長 60分</span><span>¥4,000</span></div>
+      <div class="r"><span>指名料 / 1名</span><span>¥2,000</span></div>
+      <div class="r"><span>レディースドリンク</span><span>¥1,000</span></div>
+      <div class="r"><span>カラオケ / 1曲</span><span>¥200</span></div>
+      <div class="r"><span>ショータイム</span><span>¥0</span></div>
+      <hr>
+      <div class="r sum"><span>例）1時間・指名なし</span><span>¥4,000</span></div>
+      <div class="ex">※ 税別 ／ カラオケは現金のみ<br>※ ボトルキープできます</div>
+    </div>
+  </section>
+
+  <section class="photo">
+    <div class="ph">📷 ここに本物の写真<br>（ビルの入口・エレベーター・店内のショー中の一枚）<br>AIっぽさが一番消えるのはここ</div>
+  </section>
+
+  <footer>
+    神奈川県平塚市紅谷町16-2 平塚西口会館3F<br>
+    Club Starlight
+  </footer>
+
+<script>
+const SHOWS = [['20:30','ショータイム①'],['21:30','ショータイム②'],['23:00','ショータイム③']];
+const ALL = [['20:00','フリータイム'],['20:30','ショータイム①'],['21:00','フリータイム'],['21:30','ショータイム②'],['22:00','フリータイム'],['23:00','ショータイム③'],['23:30','フリータイム']];
+const toMin = t => { const [h,m]=t.split(':').map(Number); return h*60+m; };
+function tick(){
+  const d = new Date(); const now = d.getHours()*60 + d.getMinutes();
+  const open = now >= 20*60;
+  document.getElementById('open').classList.toggle('closed', !open);
+  document.getElementById('open').textContent = open ? 'OPEN' : 'CLOSED';
+  document.getElementById('today').textContent = `TONIGHT — ${d.getMonth()+1}/${d.getDate()} (${'日月火水木金土'[d.getDay()]})`;
+  const nx = SHOWS.find(s => toMin(s[0]) > now);
+  const el = document.getElementById('next');
+  if (!open) el.innerHTML = `今夜は20:00オープン<small>最初のショーは20:30から</small>`;
+  else if (nx) { const m = toMin(nx[0]) - now; el.innerHTML = `次のショーまで ${m}分<small>${nx[1]} ／ ${nx[0]}〜 全キャスト出演</small>`; }
+  else el.innerHTML = `今夜のショーは終了<small>24:00まで営業しています</small>`;
+  let cur = -1; ALL.forEach((r,i)=>{ if (toMin(r[0]) <= now) cur = i; });
+  document.getElementById('rows').innerHTML = ALL.map((r,i)=>
+    `<div class="${r[1].includes('ショー')?'show':''} ${open&&i===cur?'now':''}"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
+}
+tick(); setInterval(tick, 30000);
+</script>
+</body>
+</html>

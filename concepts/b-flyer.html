@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>案B 紙のフライヤー — Club Starlight</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@700;900&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
+<style>
+  /* フィリピン国旗の3色だけ。グラデもぼかしも使わない */
+  :root { --paper:#f3ece0; --ink:#1b1b2f; --red:#d7262e; --blue:#1f3fa8; --yellow:#f6c51b; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--paper); color:var(--ink); font-family:'Zen Kaku Gothic New', sans-serif;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E"); }
+  .wrap { max-width:1040px; margin:0 auto; padding:0 16px; }
+
+  header { display:flex; justify-content:space-between; align-items:center; padding:18px 0; border-bottom:3px solid var(--ink); font-weight:700; font-size:14px; }
+  header a { color:var(--ink); text-decoration:none; background:var(--yellow); padding:6px 12px; border:2px solid var(--ink); }
+
+  /* ヒーロー：縦書きの大見出し＋ずらしたブロック。中央揃えをやめる */
+  .hero { display:grid; grid-template-columns: auto 1fr; gap:32px; padding:48px 0 64px; align-items:start; }
+  .tate { writing-mode:vertical-rl; font-family:'Zen Old Mincho'; font-weight:900; font-size:clamp(44px,8vw,96px); line-height:1.15; letter-spacing:.05em; }
+  .tate span { color:var(--red); }
+  .stack { position:relative; padding-top:20px; }
+  .logo { font-family:'Bebas Neue'; font-size:clamp(72px,16vw,180px); line-height:.85; color:var(--blue); letter-spacing:.01em; }
+  .logo .star { color:var(--red); display:inline-block; transform:rotate(-8deg); }
+  .stamp { position:absolute; right:0; top:0; width:120px; height:120px; border-radius:50%; border:3px solid var(--red); color:var(--red);
+    display:grid; place-items:center; text-align:center; font-weight:900; font-size:14px; line-height:1.3; transform:rotate(12deg); }
+  .lead { margin-top:28px; font-size:17px; line-height:2; max-width:520px; }
+  .lead b { background:linear-gradient(transparent 60%, var(--yellow) 60%); }
+  .ph { margin-top:28px; aspect-ratio:4/3; max-width:520px; background:var(--ink); color:#aaa; display:grid; place-items:center; font-size:13px; text-align:center; line-height:1.8;
+    border:6px solid #fff; box-shadow:4px 4px 0 var(--ink); transform:rotate(-1.5deg); }
+
+  /* 3つの数字 */
+  .facts { display:grid; grid-template-columns:repeat(3,1fr); border-top:3px solid var(--ink); border-bottom:3px solid var(--ink); }
+  .facts div { padding:24px 16px; border-right:3px solid var(--ink); }
+  .facts div:last-child { border-right:0; }
+  .facts .n { font-family:'Bebas Neue'; font-size:clamp(44px,8vw,80px); line-height:1; color:var(--blue); }
+  .facts .n small { font-family:'Zen Kaku Gothic New'; font-size:16px; font-weight:900; color:var(--ink); }
+  .facts p { font-size:13px; margin-top:6px; }
+
+  /* 時間割：駅の時刻表っぽく */
+  .sec { padding:72px 0; }
+  .sec h2 { font-family:'Zen Old Mincho'; font-weight:900; font-size:clamp(28px,5vw,44px); margin-bottom:28px; }
+  .sec h2 small { font-family:'Bebas Neue'; font-size:20px; color:var(--red); letter-spacing:.1em; margin-left:12px; }
+  .tt { display:grid; grid-template-columns:repeat(5,1fr); border:3px solid var(--ink); background:#fff; }
+  .tt div { padding:16px 8px; text-align:center; border-right:1px solid var(--ink); }
+  .tt div:last-child { border-right:0; }
+  .tt .h { font-family:'Bebas Neue'; font-size:40px; line-height:1; }
+  .tt .m { font-size:13px; margin-top:8px; min-height:2.6em; }
+  .tt .show { background:var(--red); color:#fff; }
+
+  .price { display:grid; grid-template-columns:1fr 1fr; gap:0; border:3px solid var(--ink); background:#fff; }
+  .price .big { padding:32px; border-right:3px solid var(--ink); }
+  .price .big .y { font-family:'Bebas Neue'; font-size:clamp(80px,14vw,140px); line-height:.9; color:var(--red); }
+  .price ul { list-style:none; padding:20px 28px; }
+  .price li { display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px dashed var(--ink); font-weight:700; }
+  .price li:last-child { border:0; }
+
+  .access { background:var(--blue); color:#fff; padding:64px 0; }
+  .access .g { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+  .access h2 { font-family:'Zen Old Mincho'; font-size:clamp(28px,5vw,44px); margin-bottom:20px; }
+  .access p { line-height:2.1; }
+  .access a.tel { display:inline-block; margin-top:20px; background:var(--yellow); color:var(--ink); font-family:'Bebas Neue'; font-size:44px; padding:6px 20px; text-decoration:none; border:3px solid var(--ink); box-shadow:5px 5px 0 var(--ink); }
+  .map { background:#fff; color:var(--ink); border:3px solid var(--ink); aspect-ratio:1; display:grid; place-items:center; font-size:13px; text-align:center; line-height:1.8; padding:16px; }
+
+  @media (max-width:720px){
+    .hero { grid-template-columns:1fr; } .tate { writing-mode:horizontal-tb; font-size:40px; }
+    .stamp { width:90px; height:90px; font-size:11px; }
+    .tt { grid-template-columns:1fr; } .tt div { border-right:0; border-bottom:1px solid var(--ink); display:flex; gap:16px; align-items:center; text-align:left; }
+    .tt .m { margin:0; min-height:0; }
+    .price, .access .g { grid-template-columns:1fr; } .price .big { border-right:0; border-bottom:3px solid var(--ink); }
+    .facts { grid-template-columns:1fr; } .facts div { border-right:0; border-bottom:3px solid var(--ink); } .facts div:last-child{border:0}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header><span>平塚 ／ フィリピンパブ</span><a href="tel:0463227799">電話する</a></header>
+
+    <section class="hero">
+      <h1 class="tate">今夜は、<br><span>マニラ</span>で<br>飲もう。</h1>
+      <div class="stack">
+        <div class="stamp">平塚駅<br>徒歩<br>1分</div>
+        <div class="logo">CLUB<br><span class="star">★</span>STAR<br>LIGHT</div>
+        <p class="lead">平塚駅の西口を出て、正面の平塚西口会館3F。<br>フィリピンの女の子たちが毎晩3回<b>ショーで踊ります。</b><br>料金は<b>1時間4,000円</b>。それだけ。</p>
+        <div class="ph">📷 写真はスマホで撮った本物を1枚<br>（ショー中、ちょっとブレてるくらいが良い）</div>
+      </div>
+    </section>
+
+    <section class="facts">
+      <div><div class="n">¥4,000<small>/60分</small></div><p>セット料金（税別）。延長も同じ。</p></div>
+      <div><div class="n">3<small>回/晩</small></div><p>ダンスショー。見るだけならタダ。</p></div>
+      <div><div class="n">365<small>日</small></div><p>年中無休。20:00〜24:00</p></div>
+    </section>
+
+    <section class="sec">
+      <h2>今夜のショー<small>TIMETABLE</small></h2>
+      <div class="tt">
+        <div><span class="h">20:00</span><p class="m">オープン</p></div>
+        <div class="show"><span class="h">20:30</span><p class="m">ショー①</p></div>
+        <div class="show"><span class="h">21:30</span><p class="m">ショー②</p></div>
+        <div class="show"><span class="h">23:00</span><p class="m">ショー③</p></div>
+        <div><span class="h">24:00</span><p class="m">クローズ</p></div>
+      </div>
+    </section>
+
+    <section class="sec" style="padding-top:0">
+      <h2>料金<small>PRICE</small></h2>
+      <div class="price">
+        <div class="big"><p style="font-weight:900">セット 1時間</p><div class="y">¥4,000</div><p style="font-size:13px;margin-top:8px">税別 ／ 延長 1時間 ¥4,000</p></div>
+        <ul>
+          <li><span>指名料（1名）</span><span>¥2,000</span></li>
+          <li><span>レディースドリンク</span><span>¥1,000</span></li>
+          <li><span>カラオケ（1曲・現金）</span><span>¥200</span></li>
+          <li><span>ショータイム</span><span>無料</span></li>
+          <li><span>ボトルキープ</span><span>OK</span></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <section class="access">
+    <div class="wrap g">
+      <div>
+        <h2>場所</h2>
+        <p>神奈川県平塚市紅谷町16-2<br>平塚西口会館 3F<br>JR平塚駅 西口から徒歩1分<br>20:00〜24:00 ／ 年中無休</p>
+        <a class="tel" href="tel:0463227799">0463-22-7799</a>
+      </div>
+      <div class="map">🗺 ここにGoogleマップ埋め込み<br>＋「駅からの道」写真3枚</div>
+    </div>
+  </section>
+</body>
+</html>
